@@ -22,7 +22,7 @@
               </a>
             </li>
             <li>
-              <a href="#" >
+              <a href="<?php echo base_url('/dashboard/dashboard'); ?>" >
                 <i class="fas fa-menorah"></i>
                 <span class="nav-item">Dashboard</span>
               </a>
