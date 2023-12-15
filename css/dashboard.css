@@ -37,7 +37,7 @@ nav:hover {
 }
 
 .logo img {
-  width: 45px;
+  width: 55px;
   height: 45px;
   border-radius: 50%;
 }
@@ -89,13 +89,6 @@ a:hover i {
 
 .container {
   display: flex;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  margin: 0;
-  padding: 0;
 }
 
 .container1 {

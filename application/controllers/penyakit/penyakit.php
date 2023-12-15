@@ -1,13 +1,13 @@
 <?php 
     defined('BASEPATH') OR exit('No direct script access allowed');
-    class Pasien extends CI_Controller {
+    class Penyakit extends CI_Controller {
         function __construct ()
         {
             parent::__construct();
         }
         function index() {
             $this->load->view('partials/sidebar');
-            $this->load->view('pasien/pasien_index');
+            $this->load->view('penyakit/penyakit_index');
             $this->load->view('partials/footer');
         }
 

@@ -6,9 +6,9 @@
             parent::__construct();
         }
         function index() {
-            // $this->load->view('pasien/v_header');
+            // $this->load->view('partials/sidebar');
             $this->load->view('dashboard/dashboard');
-            // $this->load->view('pasien/v_footer');
+            // $this->load->view('partials/footer');
         }
         function logout() {
             $this->session->sess_destroy();

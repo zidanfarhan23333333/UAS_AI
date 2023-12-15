@@ -16,7 +16,7 @@
         <ul>
           <li>
             <a href="#" class="logo">
-              <img src="assets/tangan.png" />
+              <img src="<?php echo base_url('img/tangan.png') ?>"/>
               <span class="nav-item">Admin</span>
             </a>
           </li>
@@ -27,13 +27,13 @@
             </a>
           </li>
           <li>
-            <a href="pasisen.html">
+            <a href="<?php echo base_url('/pasien/pasien'); ?>">
               <i class="fas fa-disease"></i>
               <span class="nav-item">Pasien</span>
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="<?php echo base_url('/penyakit/penyakit'); ?>">
               <i class="fas fa-disease"></i>
               <span class="nav-item">Penyakit</span>
             </a>
