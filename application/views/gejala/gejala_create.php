@@ -1,7 +1,7 @@
 <div class="container">
     <div class="card">
         <div class="card-header text-center">
-            <h4>Tambah Petugas Baru</h4>
+            <h4>Tambah Gejala Baru</h4>
         </div>
         <div class="card-body">
             <a href="<?php echo base_url().'gejala'?>" class="btn btn-sm btn-outline-dark pull-right">
