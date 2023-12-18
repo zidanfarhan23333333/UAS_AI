@@ -15,46 +15,34 @@
 <body class="bg-dark">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a href="<?php echo base_url().'admin'; ?>" class="navbar-brand">SIMPERPUS</a>
+            <a href="<?php echo base_url().'dashboard'; ?>" class="navbar-brand">SISTEM PAKAR</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a href="<?php echo base_url().'admin'; ?>" class="nav-link">
+                        <a href="<?php echo base_url().'dashboard'; ?>" class="nav-link">
                         <i class="fa fa-home"></i>
                             Dashboard
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url().'admin/anggota'; ?>" class="nav-link">
+                        <a href="<?php echo base_url().'pasien'; ?>" class="nav-link">
                         <i class="fa fa-users"></i>
-                            Anggota
+                            Pasien
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url().'admin/buku'; ?>" class="nav-link">
+                        <a href="<?php echo base_url().'penyakit'; ?>" class="nav-link">
                         <i class="fa fa-book"></i>
-                            Buku
+                            Penyakit
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url().'admin/petugas'; ?>" class="nav-link">
+                        <a href="<?php echo base_url().'gejala'; ?>" class="nav-link">
                         <i class="fa fa-user"></i>
-                            Petugas
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="<?php echo base_url().'admin/peminjaman'; ?>" class="nav-link">
-                        <i class="fa fa-book"></i>
-                            Peminjaman
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="<?php echo base_url().'admin/ganti_password'; ?>" class="nav-link">
-                        <i class="fa fa-lock"></i>
-                            Ganti Password
+                            Gejala
                         </a>
                     </li>
                 </ul>

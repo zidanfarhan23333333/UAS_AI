@@ -17,7 +17,6 @@
             } else {
                 // Pembaruan gagal
                 $error = $this->db->error();
-                // Tampilkan pesan kesalahan
                 echo 'Error: ' . $error['message'];
                 return false;
             }

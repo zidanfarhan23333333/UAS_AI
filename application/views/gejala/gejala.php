@@ -4,31 +4,38 @@
             <h4>Data Gejala</h4>
         </div>
         <div class="card-body">
+                <?php if ($this->session->flashdata('success_message')): ?>
+                    <div class="alert alert-success" role="alert">
+                        <?php echo $this->session->flashdata('success_message'); ?>
+                    </div>
+                <?php endif; ?>
             <a href="<?php echo base_url().'gejala/gejala_tambah' ?>" class="btn btn-sm btn-success float-right mb-3">
                 <i class="fa fa-plus"></i>
                 Tambah Gejala 
+                
             </a> <br />
+
             <table class="table table-bordered table-striped tabel-hover">
                 <tr>
                     <th width="1%">No</th>
-                    <th>Id Gejala</th>
+                    <th>Code Gejala</th>
                     <th>Nama Gejala</th>
                     <th width="16%">Aksi</th>
                 </tr>
                 <?php 
                     $no = 1;
-                    foreach ($gejala as $p)
+                    foreach ($gejala as $g)
                     {
                         ?>
                         <tr>
                             <td><?php echo $no++ ; ?></td>
-                            <td><?php echo $p->id_gejala ; ?></td>
-                            <td><?php echo $p->nm_gejala ; ?></td>    
+                            <td><?php echo $g->code_gejala ; ?></td>
+                            <td><?php echo $g->nama_gejala ; ?></td>    
                             <td>
-                                <a href="<?php echo base_url().'gejala/gejala_edit/'.$p->id_gejala ; ?>" class="btn btn-sm btn-warning">
+                                <a href="<?php echo base_url().'gejala/gejala_edit/'.$g->id_gejala ; ?>" class="btn btn-sm btn-warning">
                                     <i class="fa fa-wrench "> Edit</i>
                                 </a>
-                                <a href="<?php echo base_url().'gejala/gejala_hapus/'.$p->id_gejala ; ?>" class="btn btn-sm btn-danger">
+                                <a href="<?php echo base_url().'gejala/gejala_hapus/'.$g->id_gejala ; ?>" id="hapusBtn" class="btn btn-sm btn-danger">
                                     <i class="fa fa-trash"> Hapus</i>
                                 </a>
                             </td>  

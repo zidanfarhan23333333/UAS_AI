@@ -12,12 +12,14 @@
             <br />
             <form method="post" action="<?php echo base_url().'gejala/gejala_tambah_aksi' ?>">
                 <div class="form-group">
-                    <label for="nama" class="font-weight-bold">Id Gejala</label>
-                    <input type="text" class="form-control" name="id_gejala" placeholder="Masukkan Id Gejala" required="required">
+                    <?php echo form_error('code_gejala', '<div class="text-danger">', '</div>'); ?>
+                    <?php echo form_error('nama_gejala', '<div class="text-danger">', '</div>'); ?>
+                    <label for="nama" class="font-weight-bold">Code Gejala</label>
+                    <input type="text" class="form-control" name="code_gejala" placeholder="Masukkan Code Gejala" required="required">
                 </div>
                 <div class="form-group">
                     <label for="nama" class="font-weight-bold">Nama Gejala</label>
-                    <input type="text" class="form-control" name="nm_gejala" placeholder="Masukkan Nama Gejala" required="required">
+                    <input type="text" class="form-control" name="nama_gejala" placeholder="Masukkan Nama Gejala" required="required">
                 </div>
                 <input type="submit" class="btn btn-primary" value="Simpan">
             </form>
