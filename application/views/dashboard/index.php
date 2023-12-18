@@ -13,7 +13,7 @@
             <div class="card bg-danger text-white">
                 <div class="card-body">
                     <h1>
-                        <?php echo $this->M_data->get_data('pasien')->num_rows(); ?>
+                        <!-- <?php echo $this->M_data->get_data('pasien')->num_rows(); ?> -->
                         <div class="pull-right">
                             <i class="fa fa-users"></i>
                         </div>

@@ -28,9 +28,9 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url().'pasien'; ?>" class="nav-link">
+                        <a href="<?php echo base_url().'rule'; ?>" class="nav-link">
                         <i class="fa fa-users"></i>
-                            Pasien
+                            Rule
                         </a>
                     </li>
                     <li class="nav-item">
