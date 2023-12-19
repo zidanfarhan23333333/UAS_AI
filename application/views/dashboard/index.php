@@ -10,25 +10,12 @@
     </div>
     <div class="row">
         <div class="col-md-3">
-            <div class="card bg-danger text-white">
-                <div class="card-body">
-                    <h1>
-                        <!-- <?php echo $this->M_data->get_data('pasien')->num_rows(); ?> -->
-                        <div class="pull-right">
-                            <i class="fa fa-users"></i>
-                        </div>
-                    </h1>
-                    Jumlah Pasien
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
             <div class="card bg-primary text-white">
                 <div class="card-body">
                     <h1>
                         <?php echo $this->M_data->get_data('penyakit')->num_rows(); ?>
                         <div class="pull-right">
-                            <i class="fa fa-book"></i>
+                            <!-- <i class="fa fa-virus"></i> -->
                         </div>
                     </h1>
                     Jumlah Penyakit
@@ -41,10 +28,23 @@
                     <h1>
                         <?php echo $this->M_data->get_data('gejala')->num_rows(); ?>
                         <div class="pull-right">
-                            <i class="fa fa-user"></i>
+                            <!-- <i class="fa fa-user"></i> -->
                         </div>
                     </h1>
                     Jumlah Gejala
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-danger text-white">
+                <div class="card-body">
+                    <h1>
+                        <?php echo $this->M_data->get_data('rule')->num_rows(); ?>
+                        <div class="pull-right">
+                            <!-- <i class="fa fa-gear"></i> -->
+                        </div>
+                    </h1>
+                    Jumlah Rule
                 </div>
             </div>
         </div>

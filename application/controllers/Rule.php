@@ -42,7 +42,6 @@
             $this->load->view('partials/footer');
         }
         
-        
         function rule_tambah_aksi() {
             $id_penyakit = $this->input->post('penyakit');
             $id_gejala = $this->input->post('gejala');
@@ -50,6 +49,7 @@
         
             $this->form_validation->set_rules('penyakit', 'Penyakit', 'required');
             $this->form_validation->set_rules('gejala', 'Gejala', 'required');
+            $this->form_validation->set_rules('check_existing_rule', 'Pasangan gejala dan penyakit tersebut sudah ada.', 'callback_check_existing_rule');
         
             if ($this->form_validation->run() != false) {
                 $data = array(
@@ -57,6 +57,7 @@
                     'id_gejala' => $id_gejala,
                     'bobot' => $bobot,
                 );
+        
                 $this->M_data->insert_data($data, 'rule');
                 $this->session->set_flashdata('success_message', 'Rule berhasil dibuat.');
                 redirect(base_url() . 'rule');
@@ -66,23 +67,32 @@
                 $this->load->view('partials/footer');
             }
         }
-
-            public function get_rule_by_id($id_rule) {
+        
+        function check_existing_rule($str) {
+            $id_penyakit = $this->input->post('penyakit');
+            $id_gejala = $this->input->post('gejala');
+        
+            if ($this->M_data->check_existing_rule($id_penyakit, $id_gejala)) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+        
+        public function get_rule_by_id($id_rule) {
                 $this->db->where('id_rule', $id_rule);
-                $query = $this->db->get('your_table_name');
+                $query = $this->db->get('rule');
                 return $query->row();
             }
 
-        
-            public function edit_rule($id_rule) {
-                $data['rule'] = $this->your_model_name->get_rule_by_id($id_rule);
+            public function rule_edit($id_rule) {
+                $data['rule'] = (object)$this->get_rule_by_id($id_rule);
                 $data['distinct_data'] = $this->get_distinct_penyakit_gejala();
 
                 $this->load->view('partials/header');
-                $this->load->view('rule/edit_rule', $data);
+                $this->load->view('rule/rule_edit', $data);
                 $this->load->view('partials/footer');
             }
-
         
         function rule_update() {
             $id_rule = $this->input->post('id_rule'); 
@@ -90,23 +100,22 @@
             $id_penyakit = $this->input->post('penyakit');
             $bobot = $this->input->post('bobot');
         
-            $this->form_validation->set_rules('id_gejala', 'Id Gejala', 'required');
-            $this->form_validation->set_rules('id_rule', 'Id Penyakit Gejala', 'required');
+            $this->form_validation->set_rules('check_existing_rule', 'Pasangan gejala dan penyakit tersebut sudah ada.', 'callback_check_existing_rule');
         
             if ($this->form_validation->run() != false) {
                 $where = array('id_rule' => $id_rule); 
-                $data = array(
-                    'id_gejala' => $id_gejala,
-                    'id_penyakit' => $id_penyakit,
-                    'bobot' => $bobot
-                );
-                $this->M_data->update_data($where, $data, 'rule');
-                $this->session->set_flashdata('success_message', 'Rule berhasil diedit.');
-                redirect(base_url() . 'rule');
+                $data = (object)array(
+                'id_gejala' => $id_gejala,
+                'id_penyakit' => $id_penyakit,
+                'bobot' => $bobot
+            );
+            $this->M_data->update_data($where, $data, 'rule');
+            $this->session->set_flashdata('success_message', 'Rule berhasil diedit.');
+            redirect(base_url() . 'rule');
             } else {
-                $where = array('id_rule' => $id_rule);
-                $data['rule'] = $this->M_data->edit_data($where, 'rule')->result();
-        
+                $data['rule'] = (object)$this->get_rule_by_id($id_rule);
+                $data['distinct_data'] = $this->get_distinct_penyakit_gejala();
+
                 $this->load->view('partials/header');
                 $this->load->view('rule/rule_edit', $data);
                 $this->load->view('partials/footer');

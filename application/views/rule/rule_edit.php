@@ -9,6 +9,9 @@
                 Kembali
             </a>
             <br /> <br />
+            <?php
+            echo validation_errors('<div class="alert alert-danger">', '</div>'); 
+            ?>
             <form method="post" action="<?php echo base_url().'rule/rule_update'; ?>">
                 
                 <!-- Hidden input for rule ID -->

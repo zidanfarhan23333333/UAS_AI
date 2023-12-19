@@ -6,6 +6,7 @@
     <title>Login - Sistem Informasi Perpustakaan</title>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(). '/assets/css/bootstrap.css' ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(). '/assets/css/awesome/css/font-awesome.css' ?>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-rJg/AIkFqF1R7iQ7S2Zk0nECK/Cv08T6bKxj09nJ7FQxsn1eGlJvq3o2SJTU9+T" crossorigin="anonymous">
     <script type="text/javascript" src="<?php echo base_url(). '/assets/js/jquery.js' ?>"></script>
     <script type="text/javascript" src="<?php echo base_url(). '/assets/js/bootstrap.js' ?>"></script>
     <?php
@@ -28,9 +29,9 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url().'rule'; ?>" class="nav-link">
-                        <i class="fa fa-users"></i>
-                            Rule
+                        <a href="<?php echo base_url().'gejala'; ?>" class="nav-link">
+                        <i class="fa fa-user"></i>
+                            Gejala
                         </a>
                     </li>
                     <li class="nav-item">
@@ -40,9 +41,9 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url().'gejala'; ?>" class="nav-link">
-                        <i class="fa fa-user"></i>
-                            Gejala
+                        <a href="<?php echo base_url().'rule'; ?>" class="nav-link">
+                        <i class="fa fa-users"></i>
+                            Rule
                         </a>
                     </li>
                 </ul>

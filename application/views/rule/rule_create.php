@@ -9,6 +9,9 @@
                 Kembali
             </a>
             <br /> <br />
+            <?php
+            echo validation_errors('<div class="alert alert-danger">', '</div>'); 
+            ?>
             <form method="post" action="<?php echo base_url().'rule/rule_tambah_aksi' ?>">
             <div class="form-group">
                 <label for="penyakit" class="font-weight-bold">Penyakit</label>
@@ -20,22 +23,21 @@
                 </select>
             </div>
 
+            <div class="form-group">
+                <label for="gejala" class="font-weight-bold">Gejala</label>
+                <select class="form-control" name="gejala" id="gejala">
+                    <option value="">-Pilih Gejala</option>
+                    <?php foreach ($distinct_data->gejala as $gejala): ?>
+                        <option value='<?php echo $gejala->id_gejala; ?>'><?php echo $gejala->nama_gejala; ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
 
-                <div class="form-group">
-                    <label for="gejala" class="font-weight-bold">Gejala</label>
-                    <select class="form-control" name="gejala" id="gejala">
-                        <option value="">-Pilih Gejala</option>
-                        <?php foreach ($distinct_data->gejala as $gejala): ?>
-                            <option value='<?php echo $gejala->id_gejala; ?>'><?php echo $gejala->nama_gejala; ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="bobot" class="font-weight-bold">Bobot</label>
-                    <input type="float" class="form-control" name="bobot" placeholder="Masukkan Bobot" required="required">
-                </div>
-                <input type="submit" class="btn btn-primary" value="Simpan">
+            <div class="form-group">
+                <label for="bobot" class="font-weight-bold">Bobot</label>
+                <input type="float" class="form-control" name="bobot" placeholder="Masukkan Bobot" required="required">
+            </div>
+            <input type="submit" class="btn btn-primary" value="Simpan">
             </form>
         </div>
     </div>
