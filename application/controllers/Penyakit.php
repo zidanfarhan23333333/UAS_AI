@@ -42,7 +42,7 @@ class Penyakit extends CI_Controller {
             );
     
             $this->M_data->insert_data($data, 'penyakit');
-            redirect(base_url() . 'penyakit/penyakit');
+            redirect(base_url() . 'penyakit');
         } else {
  
             $this->load->view('partials/header');
@@ -95,7 +95,7 @@ class Penyakit extends CI_Controller {
     function penyakit_hapus($id_penyakit) {
         $where = array('id_penyakit' => $id_penyakit);
         $this->M_data->delete_data($where, 'penyakit');
-        redirect(base_url().'penyakit/penyakit');
+        redirect(base_url().'penyakit');
     }
 }
 ?>
