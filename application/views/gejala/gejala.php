@@ -9,7 +9,7 @@
                         <?php echo $this->session->flashdata('success_message'); ?>
                     </div>
                 <?php endif; ?>
-            <a href="<?php echo base_url().'gejala/gejala_tambah' ?>" class="btn btn-sm btn-success float-right mb-3">
+            <a href="<?php echo base_url().'admin/gejala_tambah' ?>" class="btn btn-sm btn-success float-right mb-3">
                 <i class="fa fa-plus"></i>
                 Tambah Gejala 
                 
@@ -32,10 +32,10 @@
                             <td><?php echo $g->code_gejala ; ?></td>
                             <td><?php echo $g->nama_gejala ; ?></td>    
                             <td>
-                                <a href="<?php echo base_url().'gejala/gejala_edit/'.$g->id_gejala ; ?>" class="btn btn-sm btn-warning">
+                                <a href="<?php echo base_url().'admin/gejala_edit/'.$g->id_gejala ; ?>" class="btn btn-sm btn-warning">
                                     <i class="fa fa-wrench "> Edit</i>
                                 </a>
-                                <a href="<?php echo base_url().'gejala/gejala_hapus/'.$g->id_gejala ; ?>" id="hapusBtn" class="btn btn-sm btn-danger">
+                                <a href="<?php echo base_url().'admin/gejala_hapus/'.$g->id_gejala ; ?>" id="hapusBtn" class="btn btn-sm btn-danger">
                                     <i class="fa fa-trash"> Hapus</i>
                                 </a>
                             </td>  

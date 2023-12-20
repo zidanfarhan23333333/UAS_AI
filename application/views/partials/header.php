@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Sistem Informasi Perpustakaan</title>
+    <title>Sistem Pakar</title>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(). '/assets/css/bootstrap.css' ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(). '/assets/css/awesome/css/font-awesome.css' ?>">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-rJg/AIkFqF1R7iQ7S2Zk0nECK/Cv08T6bKxj09nJ7FQxsn1eGlJvq3o2SJTU9+T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
     <script type="text/javascript" src="<?php echo base_url(). '/assets/js/jquery.js' ?>"></script>
     <script type="text/javascript" src="<?php echo base_url(). '/assets/js/bootstrap.js' ?>"></script>
     <?php
@@ -23,26 +23,23 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a href="<?php echo base_url().'dashboard'; ?>" class="nav-link">
-                        <i class="fa fa-home"></i>
+                        <a href="<?php echo base_url().'admin/dashboard'; ?>" class="nav-link">
                             Dashboard
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url().'gejala'; ?>" class="nav-link">
-                        <i class="fa fa-user"></i>
+                        <a href="<?php echo base_url().'admin/gejala'; ?>" class="nav-link">
                             Gejala
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url().'penyakit'; ?>" class="nav-link">
-                        <i class="fa fa-book"></i>
-                            Penyakit
+                        <a href="<?php echo base_url().'admin/penyakit'; ?>" class="nav-link">
+                        <i class="fas fa-viruses"></i>                            
+                        Penyakit
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url().'rule'; ?>" class="nav-link">
-                        <i class="fa fa-users"></i>
+                        <a href="<?php echo base_url().'admin/rule'; ?>" class="nav-link">
                             Rule
                         </a>
                     </li>

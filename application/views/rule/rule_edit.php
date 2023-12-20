@@ -4,7 +4,7 @@
             <h4>Edit Rule</h4>
         </div>
         <div class="card-body">
-            <a href="<?php echo base_url().'rule'?>" class="btn btn-sm btn-outline-dark pull-right">
+            <a href="<?php echo base_url().'admin/rule'?>" class="btn btn-sm btn-outline-dark pull-right">
                 <i class="fa fa-arrow-left"></i>
                 Kembali
             </a>
@@ -12,7 +12,7 @@
             <?php
             echo validation_errors('<div class="alert alert-danger">', '</div>'); 
             ?>
-            <form method="post" action="<?php echo base_url().'rule/rule_update'; ?>">
+            <form method="post" action="<?php echo base_url().'admin/rule_update'; ?>">
                 
                 <!-- Hidden input for rule ID -->
                 <input type="hidden" name="id_rule" value="<?php echo $rule->id_rule; ?>">

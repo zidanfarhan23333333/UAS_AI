@@ -4,13 +4,13 @@
             <h4>Edit Penyakit</h4>
         </div>
         <div class="card-body">
-            <a href="<?php echo base_url().'penyakit' ?>" class="btn btn-sm btn-light btn-outline-dark pull-right">
+            <a href="<?php echo base_url().'admin/penyakit' ?>" class="btn btn-sm btn-light btn-outline-dark pull-right">
                 <i class="fa fa-arrow-left"></i>
                 Kembali
             </a>
             <br><br>
             <?php foreach($penyakit as $p) { ?>
-                <form method="post" action="<?php echo base_url().'penyakit/penyakit_update' ; ?>">
+                <form method="post" action="<?php echo base_url().'admin/penyakit_update' ; ?>">
                     <div class="form-group">
                     <?php
                         echo validation_errors('<div class="alert alert-danger">', '</div>'); 
