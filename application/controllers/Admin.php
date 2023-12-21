@@ -302,6 +302,12 @@
             $this->session->set_flashdata('success_message', 'Rule berhasil dihapus.');
             redirect(base_url().'admin/rule');
         }
+
+        function diagnosa() {
+            $this->load->view('partials/header');
+            $this->load->view('diagnosa/diagnosa', );
+            $this->load->view('partials/footer');
+        }
         
     }
 ?>
