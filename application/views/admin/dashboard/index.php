@@ -1,3 +1,13 @@
+<!-- 
+<script>
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+        alert("Login Dulu!!")
+        window.location.href = "<?php echo base_url('admin'); ?>";
+    }
+</script> -->
+
 <div class="container">
     <div class="jumbotron text-center">
         <div class="col-sm8 mx-auto">

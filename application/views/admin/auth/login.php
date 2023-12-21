@@ -3,17 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Sistem Informasi Perpustakaan</title>
+    <title>Login - Sistem Pakar</title>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(). '/assets/css/bootstrap.css' ?>">
     <script type="text/javascript" src="<?php echo base_url(). '/assets/js/jquery.js' ?>"></script>
     <script type="text/javascript" src="<?php echo base_url(). '/assets/js/bootstrap.js' ?>"></script>
 </head>
-<body class="bg-dark">
+<body class="bg-dark d-flex align-items-center justify-content-center" style="height: 100vh;">
     <div class="container">
-        <br>
-        <h3 class="font-weight-normal text-center text-white">SISTEM INFORMASI</h3>
-        <h2 class="font-weight-normal text-center text-white mb-5">PERPUSTAKAAN</h2>
-        <div class="col-md-4 offset-md-4">
+        <h3 class="font-weight-normal text-center text-white mb-5">SISTEM PAKAR</h3>
+        <div class="col-md-6 offset-md-3">
             <div class="card">
                 <div class="card-body">
                     <?php 
@@ -38,16 +36,16 @@
                     <?php 
                         echo validation_errors();
                     ?>
-                    <form method="post" action="<?php echo base_url(). 'login/login_aksi'; ?>">
+                    <form method="post" action="<?php echo base_url(). 'admin/login_aksi'; ?>">
                         <div class="form-group">
                             <label for="username">Username</label>
-                            <input name="username" type="text" class="form-control" placeholder="Masukkan username">
+                            <input name="username" type="text" class="form-control" placeholder="Masukkan username" required="required">
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input name="password" type="password" class="form-control" placeholder="Masukkan password">
+                            <input name="password" type="password" class="form-control" placeholder="Masukkan password" required="required">
                         </div>
-                        <button type="submit" class="btn btn-primary">Login</button>
+                        <button type="submit" class="btn btn-primary btn-block">Login</button>
                     </form>
                 </div>
             </div>
