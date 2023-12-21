@@ -28,10 +28,6 @@
             $this->db->delete($table, $where);
         }
         
-        function cek_login($table, $where){
-            return $this->db->get_where($table, $where);
-        }
-
         function check_existing_rule($id_penyakit, $id_gejala) {
             $this->db->where('id_penyakit', $id_penyakit);
             $this->db->where('id_gejala', $id_gejala);

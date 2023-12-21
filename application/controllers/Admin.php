@@ -1,17 +1,57 @@
 <?php 
     defined('BASEPATH') OR exit('No direct script access allowed');
+
+    require_once FCPATH . 'vendor/autoload.php';
+
     class Admin extends CI_Controller {
         function __construct ()
         {
             parent::__construct();
+            $this->load->library('form_validation');
+            $this->load->library('jwt'); 
+            $this->load->model('M_Auth'); 
+            $this->load->model('M_Admin'); 
         }
 
-        public function index()
-        {
-        $this->load->view('admin/auth/login');
+        public function index(){
+            $this->load->view('admin/auth/login');
+        }
+
+        function login_aksi() {
+            $this->form_validation->set_rules('username', 'Username', 'required');
+            $this->form_validation->set_rules('password', 'Password', 'required');
+    
+            if ($this->form_validation->run() !== false) {
+                $username = $this->input->post('username');
+                $password = $this->input->post('password');
+    
+                $where = array(
+                    'username' => $username, 
+                    'password' => md5($password)
+                );
+    
+                $cek = $this->M_Auth->cek_login('tb_admin', $where)->num_rows();
+    
+                if ($cek > 0) {
+                    $data = $this->M_Auth->cek_login('tb_admin', $where)->row();
+                    
+                    $response = array(
+                        'id' => $data->id,
+                        'username' => $data->username,
+                        'password' => $data->password,
+                    );
+                    $token = $this->jwt->encode($response);
+                } else {
+                    $this->session->set_flashdata('error', 'Username atau password salah');
+                    redirect(base_url() . 'admin');
+                }
+            } else {
+                $this->load->view('admin/login');
+            }
         }
         
         function dashboard() {
+
             $this->load->view('partials/header');
             $this->load->view('admin/dashboard/index', );
             $this->load->view('partials/footer');
