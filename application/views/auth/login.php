@@ -47,13 +47,6 @@
                             <label for="password">Password</label>
                             <input name="password" type="password" class="form-control" placeholder="Masukkan password">
                         </div>
-                        <div class="form-group">
-                            <label for="sebagai">Login Sebagai:</label>
-                            <select name="sebagai" class="form-control">
-                                <option value="admin">Admin</option>
-                                <option value="petugas">Petugas</option>
-                            </select>
-                        </div>
                         <button type="submit" class="btn btn-primary">Login</button>
                     </form>
                 </div>

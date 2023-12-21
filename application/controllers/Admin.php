@@ -81,7 +81,7 @@
                 );
                 $this->M_Admin->update_data($where, $data, 'gejala');
                 $this->session->set_flashdata('success_message', 'Gejala berhasil diedit.');
-                redirect(base_url() . 'gejala');
+                redirect(base_url() . 'admin/gejala');
             } else {
                 $where = array('id_gejala' => $id_gejala);
                 $data['gejala'] = $this->M_Admin->edit_data($where, 'gejala')->result();
@@ -257,7 +257,7 @@
                 return $query->row();
             }
 
-            public function rule_edit($id_rule) {
+        public function rule_edit($id_rule) {
                 $data['rule'] = (object)$this->get_rule_by_id($id_rule);
                 $data['distinct_data'] = $this->M_Admin->get_distinct_penyakit_gejala();
 
