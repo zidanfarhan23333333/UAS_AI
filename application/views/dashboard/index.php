@@ -13,7 +13,7 @@
             <div class="card bg-primary text-white">
                 <div class="card-body">
                     <h1>
-                        <?php echo $this->M_data->get_data('penyakit')->num_rows(); ?>
+                        <?php echo $this->M_Admin->get_data('penyakit')->num_rows(); ?>
                         <div class="pull-right">
                             <!-- <i class="fa fa-virus"></i> -->
                         </div>
@@ -26,7 +26,7 @@
             <div class="card bg-warning text-white">
                 <div class="card-body">
                     <h1>
-                        <?php echo $this->M_data->get_data('gejala')->num_rows(); ?>
+                        <?php echo $this->M_Admin->get_data('gejala')->num_rows(); ?>
                         <div class="pull-right">
                             <!-- <i class="fa fa-user"></i> -->
                         </div>
@@ -39,7 +39,7 @@
             <div class="card bg-danger text-white">
                 <div class="card-body">
                     <h1>
-                        <?php echo $this->M_data->get_data('rule')->num_rows(); ?>
+                        <?php echo $this->M_Admin->get_data('rule')->num_rows(); ?>
                         <div class="pull-right">
                             <!-- <i class="fa fa-gear"></i> -->
                         </div>

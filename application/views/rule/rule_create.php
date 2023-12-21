@@ -4,7 +4,7 @@
             <h4>Tambah Rule Baru</h4>
         </div>
         <div class="card-body">
-            <a href="<?php echo base_url().'rule'?>" class="btn btn-sm btn-outline-dark pull-right">
+            <a href="<?php echo base_url().'admin/rule'?>" class="btn btn-sm btn-outline-dark pull-right">
                 <i class="fa fa-arrow-left"></i>
                 Kembali
             </a>
@@ -12,7 +12,7 @@
             <?php
             echo validation_errors('<div class="alert alert-danger">', '</div>'); 
             ?>
-            <form method="post" action="<?php echo base_url().'rule/rule_tambah_aksi' ?>">
+            <form method="post" action="<?php echo base_url().'admin/rule_tambah_aksi' ?>">
             <div class="form-group">
                 <label for="penyakit" class="font-weight-bold">Penyakit</label>
                 <select name="penyakit" id="penyakit" class="form-control">

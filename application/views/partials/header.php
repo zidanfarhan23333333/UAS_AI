@@ -23,24 +23,29 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a href="<?php echo base_url().'dashboard'; ?>" class="nav-link">
+                        <a href="<?php echo base_url().'admin/dashboard'; ?>" class="nav-link">
                             Dashboard
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url().'gejala'; ?>" class="nav-link">
+                        <a href="<?php echo base_url().'admin/gejala'; ?>" class="nav-link">
                             Gejala
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url().'penyakit'; ?>" class="nav-link">
+                        <a href="<?php echo base_url().'admin/penyakit'; ?>" class="nav-link">
                         <i class="fas fa-viruses"></i>                            
                         Penyakit
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url().'rule'; ?>" class="nav-link">
+                        <a href="<?php echo base_url().'admin/rule'; ?>" class="nav-link">
                             Rule
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?php echo base_url().'admin/rule'; ?>" class="nav-link">
+                            Diagnosa
                         </a>
                     </li>
                 </ul>

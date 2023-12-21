@@ -1,5 +1,5 @@
 <?php 
-    class M_data extends CI_Model{
+    class M_Admin extends CI_Model{
 
         function get_data($table){
             return $this->db->get($table);

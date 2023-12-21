@@ -4,13 +4,13 @@
             <h4>Tambah Gejala Baru</h4>
         </div>
         <div class="card-body">
-            <a href="<?php echo base_url().'gejala'?>" class="btn btn-sm btn-outline-dark pull-right">
+            <a href="<?php echo base_url().'admin/gejala'?>" class="btn btn-sm btn-outline-dark pull-right">
                 <i class="fa fa-arrow-left"></i>
                 Kembali
             </a>
             <br />
             <br />
-            <form method="post" action="<?php echo base_url().'gejala/gejala_tambah_aksi' ?>">
+            <form method="post" action="<?php echo base_url().'admin/gejala_tambah_aksi' ?>">
                 <div class="form-group">
                     <?php echo form_error('code_gejala', '<div class="text-danger">', '</div>'); ?>
                     <?php echo form_error('nama_gejala', '<div class="text-danger">', '</div>'); ?>

@@ -9,7 +9,7 @@
                     <?php echo $this->session->flashdata('success_message'); ?>
                 </div>
             <?php endif; ?>
-            <a href="<?php echo base_url().'penyakit/penyakit_tambah' ?>" class="btn btn-sm btn-success float-right mb-3">
+            <a href="<?php echo base_url().'admin/penyakit_tambah' ?>" class="btn btn-sm btn-success float-right mb-3">
                 <i class="fa fa-plus"></i>
                 Tambah Penyakit
             </a> <br />
@@ -35,10 +35,10 @@
                             <td><?php echo $p->definisi ; ?></td>
                             <td><?php echo $p->pengobatan ; ?></td>
                             <td>
-                                <a href="<?php echo base_url().'penyakit/penyakit_edit/'.$p->id_penyakit ; ?>" class="btn btn-sm btn-warning">
+                                <a href="<?php echo base_url().'admin/penyakit_edit/'.$p->id_penyakit ; ?>" class="btn btn-sm btn-warning">
                                     <i class="fa fa-wrench "> Edit</i>
                                 </a>
-                                <a href="<?php echo base_url().'penyakit/penyakit_hapus/'.$p->id_penyakit ; ?>" id="hapusBtn" class="btn btn-sm btn-danger">
+                                <a href="<?php echo base_url().'admin/penyakit_hapus/'.$p->id_penyakit ; ?>" id="hapusBtn" class="btn btn-sm btn-danger">
                                     <i class="fa fa-trash"> Hapus</i>
                                 </a>
                             </td>  

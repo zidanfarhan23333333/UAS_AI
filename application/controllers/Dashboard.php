@@ -5,11 +5,7 @@
         {
             parent::__construct();
         }
-        function index() {
-            $this->load->view('partials/header');
-            $this->load->view('dashboard/index', );
-            $this->load->view('partials/footer');
-        }
+        
         
     }
 ?>
