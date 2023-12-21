@@ -8,24 +8,24 @@
 
         public function index()
         {
-        $this->load->view('auth/login');
+        $this->load->view('admin/auth/login');
         }
         
         function dashboard() {
             $this->load->view('partials/header');
-            $this->load->view('dashboard/index', );
+            $this->load->view('admin/dashboard/index', );
             $this->load->view('partials/footer');
         }
 
         function gejala() {
             $data['gejala'] = $this->M_Admin->get_data('gejala')->result();
             $this->load->view('partials/header');
-            $this->load->view('gejala/gejala', $data);
+            $this->load->view('admin/gejala/gejala', $data);
             $this->load->view('partials/footer');
         }
         function gejala_tambah() {
             $this->load->view('partials/header');
-            $this->load->view('gejala/gejala_create');
+            $this->load->view('admin/gejala/gejala_create');
             $this->load->view('partials/footer');
         }
         function gejala_tambah_aksi() {
@@ -47,7 +47,7 @@
                 redirect(base_url() . 'admin/gejala');
             } else {
                 $this->load->view('partials/header');
-                $this->load->view('gejala/gejala_create');
+                $this->load->view('admin/gejala/gejala_create');
                 $this->load->view('partials/footer');
             }
         }
@@ -56,7 +56,7 @@
             $where = array('id_gejala' => $id_gejala);
             $data['gejala'] = $this->M_Admin->edit_data($where, 'gejala')->result();
             $this->load->view('partials/header');
-            $this->load->view('gejala/gejala_edit', $data);
+            $this->load->view('admin/gejala/gejala_edit', $data);
             $this->load->view('partials/footer');
         }
         function gejala_update() {
@@ -83,7 +83,7 @@
                 $data['gejala'] = $this->M_Admin->edit_data($where, 'gejala')->result();
         
                 $this->load->view('partials/header');
-                $this->load->view('gejala/gejala_edit', $data);
+                $this->load->view('admin/gejala/gejala_edit', $data);
                 $this->load->view('partials/footer');
             }
         }
@@ -98,13 +98,13 @@
         function penyakit() {
             $data['penyakit'] = $this->M_Admin->get_data('penyakit')->result();
             $this->load->view('partials/header');
-            $this->load->view('penyakit/penyakit', $data);
+            $this->load->view('admin/penyakit/penyakit', $data);
             $this->load->view('partials/footer');
         }
     
         function penyakit_tambah() {
             $this->load->view('partials/header');
-            $this->load->view('penyakit/penyakit_create');
+            $this->load->view('admin/penyakit/penyakit_create');
             $this->load->view('partials/footer');
         }
     
@@ -134,7 +134,7 @@
             } else {
      
                 $this->load->view('partials/header');
-                $this->load->view('penyakit/penyakit_create');
+                $this->load->view('admin/penyakit/penyakit_create');
                 $this->load->view('partials/footer');
             }
         }
@@ -143,7 +143,7 @@
             $where = array('id_penyakit' => $id_penyakit);
             $data['penyakit'] = $this->M_Admin->edit_data($where, 'penyakit')->result();
             $this->load->view('partials/header');
-            $this->load->view('penyakit/penyakit_edit', $data);
+            $this->load->view('admin/penyakit/penyakit_edit', $data);
             $this->load->view('partials/footer');
         }
         
@@ -177,7 +177,7 @@
                 $data['penyakit'] = $this->M_Admin->edit_data($where, 'penyakit')->result();
             
                 $this->load->view('partials/header');
-                $this->load->view('penyakit/penyakit_edit', $data);
+                $this->load->view('admin/penyakit/penyakit_edit', $data);
                 $this->load->view('partials/footer');
             }
         }
@@ -202,7 +202,7 @@
             $data['rules'] = $this->get_all(); 
         
             $this->load->view('partials/header');
-            $this->load->view('rule/rule', $data);
+            $this->load->view('admin/rule/rule', $data);
             $this->load->view('partials/footer');
         }
 
@@ -210,7 +210,7 @@
             $data['distinct_data'] = $this->M_Admin->get_distinct_penyakit_gejala();
         
             $this->load->view('partials/header');
-            $this->load->view('rule/rule_create', $data);
+            $this->load->view('admin/rule/rule_create', $data);
             $this->load->view('partials/footer');
         }
         
@@ -237,7 +237,7 @@
                 $data['distinct_data'] = $this->M_Admin->get_distinct_penyakit_gejala();
         
                 $this->load->view('partials/header');
-                $this->load->view('rule/rule_create', $data);
+                $this->load->view('admin/rule/rule_create', $data);
                 $this->load->view('partials/footer');
             }
         }
@@ -264,7 +264,7 @@
                 $data['distinct_data'] = $this->M_Admin->get_distinct_penyakit_gejala();
 
                 $this->load->view('partials/header');
-                $this->load->view('rule/rule_edit', $data);
+                $this->load->view('admin/rule/rule_edit', $data);
                 $this->load->view('partials/footer');
             }
         
@@ -291,7 +291,7 @@
                 $data['distinct_data'] = $this->M_Admin->get_distinct_penyakit_gejala();
 
                 $this->load->view('partials/header');
-                $this->load->view('rule/rule_edit', $data);
+                $this->load->view('admin/rule/rule_edit', $data);
                 $this->load->view('partials/footer');
             }
         }
@@ -305,7 +305,7 @@
 
         function diagnosa() {
             $this->load->view('partials/header');
-            $this->load->view('diagnosa/diagnosa', );
+            $this->load->view('admin/diagnosa/diagnosa', );
             $this->load->view('partials/footer');
         }
         
