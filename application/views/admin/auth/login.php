@@ -14,22 +14,14 @@
         <div class="col-md-6 offset-md-3">
             <div class="card">
                 <div class="card-body">
-                    <?php 
-                        if(isset($_GET['alert'])) {
-                            if($_GET['alert']=="gagal") {
-                                echo '<div class="alert alert-danger font-weight-bold text-center">LOGIN GAGAL!</div>';
-                            }
-                            if($_GET['alert']=="belum_login") {
-                                echo '<div class="alert alert-danger font-weight-bold text-center">SILAHKAN LOGIN TERLEBIH DAHULU!</div>';
-                            }
-                            if($_GET['alert']=="logout") {
-                                echo '<div class="alert alert-success font-weight-bold text-center">ANDA TELAH LOGOUT!</div>';
-                            }
-                        }
-                    ?>
                     <?php if ($this->session->flashdata('error')): ?>
                         <div class="alert alert-danger">
                             <?php echo $this->session->flashdata('error'); ?>
+                        </div>
+                    <?php endif; ?>
+                    <?php if ($this->session->flashdata('success_message')): ?>
+                        <div class="alert alert-success" role="alert">
+                            <?php echo $this->session->flashdata('success_message'); ?>
                         </div>
                     <?php endif; ?>
                     <h4 class="font-weight-bold text-center mb-3 mt-3">LOGIN</h4>

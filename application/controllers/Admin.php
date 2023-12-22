@@ -20,18 +20,18 @@
         function login_aksi() {
             $this->form_validation->set_rules('username', 'Username', 'required');
             $this->form_validation->set_rules('password', 'Password', 'required');
-    
+        
             if ($this->form_validation->run() !== false) {
                 $username = $this->input->post('username');
                 $password = $this->input->post('password');
-    
+        
                 $where = array(
                     'username' => $username, 
                     'password' => md5($password)
                 );
-    
+        
                 $cek = $this->M_Auth->cek_login('tb_admin', $where)->num_rows();
-    
+        
                 if ($cek > 0) {
                     $data = $this->M_Auth->cek_login('tb_admin', $where)->row();
                     
@@ -41,9 +41,16 @@
                         'password' => $data->password,
                     );
                     $token = $this->jwt->encode($response);
-
-                    echo 'token: ' . $token;
-
+        
+                    $cookie = array(
+                        'name'   => 'token',
+                        'value'  => $token,
+                        'expire' => time() + 3600,
+                        'secure' => false,
+                    );
+                    $this->input->set_cookie($cookie);
+        
+                    redirect(base_url() . 'admin/dashboard');
                 } else {
                     $this->session->set_flashdata('error', 'Username atau password salah');
                     redirect(base_url() . 'admin');
@@ -53,182 +60,237 @@
             }
         }
         
-        function dashboard() {
-
-            $this->load->view('partials/header');
-            $this->load->view('admin/dashboard/index', );
-            $this->load->view('partials/footer');
+        function logout() {
+            $cookie = array(
+                'name'   => 'token',
+                'value'  => '',
+                'expire' => time() - 3600, 
+                'secure' => false,
+            );
+            $this->input->set_cookie($cookie);
+            
+            $this->session->set_flashdata('success_message', 'Berhasil Logout');
+            redirect(base_url() . 'admin');
         }
+        
+        function checkToken() {
+            $token = $this->input->cookie('token');
+            if (!$token) {
+                $this->session->set_flashdata('error', 'Harus Login Dulu');
+                redirect(base_url() . 'admin');
+            }
+        
+            try {
+                $decoded_token = $this->jwt->decode($token);
+                return true; 
+            } catch (Exception $e) {
+                return false; 
+            }
+        }
+        
+        function dashboard() {
+            if ($this->checkToken()) {
+                $this->load->view('partials/header');
+                $this->load->view('admin/dashboard/index');
+                $this->load->view('partials/footer');
+            }
+        }
+        
 
         function gejala() {
-            $data['gejala'] = $this->M_Admin->get_data('gejala')->result();
-            $this->load->view('partials/header');
-            $this->load->view('admin/gejala/gejala', $data);
-            $this->load->view('partials/footer');
-        }
+            if ($this->checkToken()) {
+                $data['gejala'] = $this->M_Admin->get_data('gejala')->result();
+                $this->load->view('partials/header');
+                $this->load->view('admin/gejala/gejala', $data);
+                $this->load->view('partials/footer');
+            }
+            }
         function gejala_tambah() {
-            $this->load->view('partials/header');
-            $this->load->view('admin/gejala/gejala_create');
-            $this->load->view('partials/footer');
-        }
-        function gejala_tambah_aksi() {
-            $code_gejala = $this->input->post('code_gejala');
-            $nama_gejala = $this->input->post('nama_gejala');
-            
-            $this->form_validation->set_rules('code_gejala', 'Kode Gejala', 'required|is_unique[gejala.code_gejala]',
-                array('is_unique' => 'Kode Gejala sudah ada. Inputkan kode gejala yang berbeda.')
-            );
-            $this->form_validation->set_rules('nama_gejala', 'Nama Gejala', 'required');
-        
-            if ($this->form_validation->run() != false) {
-                $data = array(
-                    'code_gejala' => $code_gejala,
-                    'nama_gejala' => $nama_gejala,
-                );
-                $this->M_Admin->insert_data($data, 'gejala');
-                $this->session->set_flashdata('success_message', 'Gejala berhasil dibuat.');
-                redirect(base_url() . 'admin/gejala');
-            } else {
+            if ($this->checkToken()) {
                 $this->load->view('partials/header');
                 $this->load->view('admin/gejala/gejala_create');
                 $this->load->view('partials/footer');
             }
         }
+
+        function gejala_tambah_aksi() {
+            if ($this->checkToken()) {
+                $code_gejala = $this->input->post('code_gejala');
+                $nama_gejala = $this->input->post('nama_gejala');
+                
+                $this->form_validation->set_rules('code_gejala', 'Kode Gejala', 'required|is_unique[gejala.code_gejala]',
+                    array('is_unique' => 'Kode Gejala sudah ada. Inputkan kode gejala yang berbeda.')
+                );
+                $this->form_validation->set_rules('nama_gejala', 'Nama Gejala', 'required');
+            
+                if ($this->form_validation->run() != false) {
+                    $data = array(
+                        'code_gejala' => $code_gejala,
+                        'nama_gejala' => $nama_gejala,
+                    );
+                    $this->M_Admin->insert_data($data, 'gejala');
+                    $this->session->set_flashdata('success_message', 'Gejala berhasil dibuat.');
+                    redirect(base_url() . 'admin/gejala');
+                } else {
+                    $this->load->view('partials/header');
+                    $this->load->view('admin/gejala/gejala_create');
+                    $this->load->view('partials/footer');
+                }
+            }
+        }
         
         function gejala_edit($id_gejala) {
-            $where = array('id_gejala' => $id_gejala);
-            $data['gejala'] = $this->M_Admin->edit_data($where, 'gejala')->result();
-            $this->load->view('partials/header');
-            $this->load->view('admin/gejala/gejala_edit', $data);
-            $this->load->view('partials/footer');
-        }
-        function gejala_update() {
-            $id_gejala = $this->input->post('id_gejala'); 
-            $code_gejala = $this->input->post('code_gejala');
-            $nama_gejala = $this->input->post('nama_gejala');
-        
-            $this->form_validation->set_rules('code_gejala', 'Kode Gejala', 'required|is_unique[gejala.code_gejala]',
-                array('is_unique' => 'Kode Gejala sudah ada. Inputkan kode gejala yang berbeda.')
-            );
-            $this->form_validation->set_rules('nama_gejala', 'Nama Gejala', 'required');
-        
-            if ($this->form_validation->run() != false) {
-                $where = array('id_gejala' => $id_gejala); 
-                $data = array(
-                    'code_gejala' => $code_gejala,
-                    'nama_gejala' => $nama_gejala,
-                );
-                $this->M_Admin->update_data($where, $data, 'gejala');
-                $this->session->set_flashdata('success_message', 'Gejala berhasil diedit.');
-                redirect(base_url() . 'admin/gejala');
-            } else {
+            if ($this->checkToken()) {
                 $where = array('id_gejala' => $id_gejala);
                 $data['gejala'] = $this->M_Admin->edit_data($where, 'gejala')->result();
-        
                 $this->load->view('partials/header');
                 $this->load->view('admin/gejala/gejala_edit', $data);
                 $this->load->view('partials/footer');
             }
         }
+        function gejala_update() {
+            if ($this->checkToken()) {
+                $id_gejala = $this->input->post('id_gejala'); 
+                $code_gejala = $this->input->post('code_gejala');
+                $nama_gejala = $this->input->post('nama_gejala');
+            
+                $this->form_validation->set_rules('code_gejala', 'Kode Gejala', 'required|is_unique[gejala.code_gejala]',
+                    array('is_unique' => 'Kode Gejala sudah ada. Inputkan kode gejala yang berbeda.')
+                );
+                $this->form_validation->set_rules('nama_gejala', 'Nama Gejala', 'required');
+            
+                if ($this->form_validation->run() != false) {
+                    $where = array('id_gejala' => $id_gejala); 
+                    $data = array(
+                        'code_gejala' => $code_gejala,
+                        'nama_gejala' => $nama_gejala,
+                    );
+                    $this->M_Admin->update_data($where, $data, 'gejala');
+                    $this->session->set_flashdata('success_message', 'Gejala berhasil diedit.');
+                    redirect(base_url() . 'admin/gejala');
+                } else {
+                    $where = array('id_gejala' => $id_gejala);
+                    $data['gejala'] = $this->M_Admin->edit_data($where, 'gejala')->result();
+            
+                    $this->load->view('partials/header');
+                    $this->load->view('admin/gejala/gejala_edit', $data);
+                    $this->load->view('partials/footer');
+                }
+            }
+        }
         
         function gejala_hapus($id_gejala) {
-            $where = array('id_gejala' => $id_gejala);
-            $this->M_Admin->delete_data($where,'gejala');
-            $this->session->set_flashdata('success_message', 'Gejala berhasil dihapus.');
-            redirect(base_url().'admin/gejala');
+            if ($this->checkToken()) {
+                $where = array('id_gejala' => $id_gejala);
+                $this->M_Admin->delete_data($where,'gejala');
+                $this->session->set_flashdata('success_message', 'Gejala berhasil dihapus.');
+                redirect(base_url().'admin/gejala');
+            }
         }
 
         function penyakit() {
-            $data['penyakit'] = $this->M_Admin->get_data('penyakit')->result();
-            $this->load->view('partials/header');
-            $this->load->view('admin/penyakit/penyakit', $data);
-            $this->load->view('partials/footer');
+            if ($this->checkToken()) {
+                $data['penyakit'] = $this->M_Admin->get_data('penyakit')->result();
+                $this->load->view('partials/header');
+                $this->load->view('admin/penyakit/penyakit', $data);
+                $this->load->view('partials/footer');
+            }
         }
     
         function penyakit_tambah() {
-            $this->load->view('partials/header');
-            $this->load->view('admin/penyakit/penyakit_create');
-            $this->load->view('partials/footer');
-        }
-    
-        function penyakit_tambah_aksi() {
-            $this->form_validation->set_rules('code_penyakit', 'Kode Penyakit', 'required|is_unique[penyakit.code_penyakit]',
-                array('is_unique' => 'Kode Penyakit ini sudah ada. Tolong Inputkan kode penyakit yang berbeda.')
-            );
-            $this->form_validation->set_rules('nama_penyakit', 'Nama Penyakit', 'required');
-            $this->form_validation->set_rules('definisi', 'Definisi', 'required');
-            $this->form_validation->set_rules('pengobatan', 'Pengobatan', 'required');
-        
-            if ($this->form_validation->run() != false) {
-                $code_penyakit = $this->input->post('code_penyakit');
-                $nama_penyakit = $this->input->post('nama_penyakit');
-                $definisi = $this->input->post('definisi');
-                $pengobatan = $this->input->post('pengobatan');
-        
-                $data = array(
-                    'code_penyakit' => $code_penyakit,
-                    'nama_penyakit' => $nama_penyakit,
-                    'definisi' => $definisi,
-                    'pengobatan' => $pengobatan
-                );
-        
-                $this->M_Admin->insert_data($data, 'penyakit');
-                redirect(base_url() . 'admin/penyakit');
-            } else {
-     
+            if ($this->checkToken()) {
                 $this->load->view('partials/header');
                 $this->load->view('admin/penyakit/penyakit_create');
                 $this->load->view('partials/footer');
             }
         }
-        
-        function penyakit_edit($id_penyakit) {
-            $where = array('id_penyakit' => $id_penyakit);
-            $data['penyakit'] = $this->M_Admin->edit_data($where, 'penyakit')->result();
-            $this->load->view('partials/header');
-            $this->load->view('admin/penyakit/penyakit_edit', $data);
-            $this->load->view('partials/footer');
+    
+        function penyakit_tambah_aksi() {
+            if ($this->checkToken()) {
+                $this->form_validation->set_rules('code_penyakit', 'Kode Penyakit', 'required|is_unique[penyakit.code_penyakit]',
+                    array('is_unique' => 'Kode Penyakit ini sudah ada. Tolong Inputkan kode penyakit yang berbeda.')
+                );
+                $this->form_validation->set_rules('nama_penyakit', 'Nama Penyakit', 'required');
+                $this->form_validation->set_rules('definisi', 'Definisi', 'required');
+                $this->form_validation->set_rules('pengobatan', 'Pengobatan', 'required');
+            
+                if ($this->form_validation->run() != false) {
+                    $code_penyakit = $this->input->post('code_penyakit');
+                    $nama_penyakit = $this->input->post('nama_penyakit');
+                    $definisi = $this->input->post('definisi');
+                    $pengobatan = $this->input->post('pengobatan');
+            
+                    $data = array(
+                        'code_penyakit' => $code_penyakit,
+                        'nama_penyakit' => $nama_penyakit,
+                        'definisi' => $definisi,
+                        'pengobatan' => $pengobatan
+                    );
+            
+                    $this->M_Admin->insert_data($data, 'penyakit');
+                    redirect(base_url() . 'admin/penyakit');
+                } else {
+         
+                    $this->load->view('partials/header');
+                    $this->load->view('admin/penyakit/penyakit_create');
+                    $this->load->view('partials/footer');
+                }
+            }
         }
         
-        function penyakit_update() {
-            $id_penyakit = $this->input->post('id_penyakit');
-            $code_penyakit = $this->input->post('code_penyakit');
-            $nama_penyakit = $this->input->post('nama_penyakit');
-            $definisi = $this->input->post('definisi');
-            $pengobatan = $this->input->post('pengobatan');
-            
-            $this->form_validation->set_rules('code_penyakit', 'Kode Penyakit', 'required|is_unique[penyakit.code_penyakit]',
-                array('is_unique' => 'Kode Penyakit sudah ada. Inputkan kode penyakit yang berbeda.')
-            );
-            $this->form_validation->set_rules('nama_penyakit', 'Nama Penyakit', 'required');
-            $this->form_validation->set_rules('definisi', 'Definisi Penyakit', 'required');
-            $this->form_validation->set_rules('pengobatan', 'Pengobatan', 'required');
-            
-            if ($this->form_validation->run() != false) {
-                $where = array('id_penyakit' => $id_penyakit);
-                $data = array(
-                    'code_penyakit' => $code_penyakit,
-                    'nama_penyakit' => $nama_penyakit,
-                    'definisi' => $definisi,
-                    'pengobatan' => $pengobatan,
-                );
-                $this->M_Admin->update_data($where, $data, 'penyakit');
-                $this->session->set_flashdata('success_message', 'Penyakit berhasil diedit.');
-                redirect(base_url() . 'admin/penyakit');
-            } else {
+        function penyakit_edit($id_penyakit) {
+            if ($this->checkToken()) {
                 $where = array('id_penyakit' => $id_penyakit);
                 $data['penyakit'] = $this->M_Admin->edit_data($where, 'penyakit')->result();
-            
                 $this->load->view('partials/header');
                 $this->load->view('admin/penyakit/penyakit_edit', $data);
                 $this->load->view('partials/footer');
             }
         }
         
+        function penyakit_update() {
+            if ($this->checkToken()) {
+                $id_penyakit = $this->input->post('id_penyakit');
+                $code_penyakit = $this->input->post('code_penyakit');
+                $nama_penyakit = $this->input->post('nama_penyakit');
+                $definisi = $this->input->post('definisi');
+                $pengobatan = $this->input->post('pengobatan');
+                
+                $this->form_validation->set_rules('code_penyakit', 'Kode Penyakit', 'required|is_unique[penyakit.code_penyakit]',
+                    array('is_unique' => 'Kode Penyakit sudah ada. Inputkan kode penyakit yang berbeda.')
+                );
+                $this->form_validation->set_rules('nama_penyakit', 'Nama Penyakit', 'required');
+                $this->form_validation->set_rules('definisi', 'Definisi Penyakit', 'required');
+                $this->form_validation->set_rules('pengobatan', 'Pengobatan', 'required');
+                
+                if ($this->form_validation->run() != false) {
+                    $where = array('id_penyakit' => $id_penyakit);
+                    $data = array(
+                        'code_penyakit' => $code_penyakit,
+                        'nama_penyakit' => $nama_penyakit,
+                        'definisi' => $definisi,
+                        'pengobatan' => $pengobatan,
+                    );
+                    $this->M_Admin->update_data($where, $data, 'penyakit');
+                    $this->session->set_flashdata('success_message', 'Penyakit berhasil diedit.');
+                    redirect(base_url() . 'admin/penyakit');
+                } else {
+                    $where = array('id_penyakit' => $id_penyakit);
+                    $data['penyakit'] = $this->M_Admin->edit_data($where, 'penyakit')->result();
+                
+                    $this->load->view('partials/header');
+                    $this->load->view('admin/penyakit/penyakit_edit', $data);
+                    $this->load->view('partials/footer');
+                }
+            }
+        }
+        
         function penyakit_hapus($id_penyakit) {
-            $where = array('id_penyakit' => $id_penyakit);
-            $this->M_Admin->delete_data($where, 'penyakit');
-            redirect(base_url().'admin/penyakit');
+            if ($this->checkToken()) {
+                $where = array('id_penyakit' => $id_penyakit);
+                $this->M_Admin->delete_data($where, 'penyakit');
+                redirect(base_url().'admin/penyakit');
+            }
         }
 
         private function get_all() {
@@ -242,46 +304,52 @@
         }
         
         function rule() {
-            $data['rules'] = $this->get_all(); 
-        
-            $this->load->view('partials/header');
-            $this->load->view('admin/rule/rule', $data);
-            $this->load->view('partials/footer');
+            if ($this->checkToken()) {
+                $data['rules'] = $this->get_all(); 
+            
+                $this->load->view('partials/header');
+                $this->load->view('admin/rule/rule', $data);
+                $this->load->view('partials/footer');
+            }
         }
 
         function rule_tambah() {
-            $data['distinct_data'] = $this->M_Admin->get_distinct_penyakit_gejala();
-        
-            $this->load->view('partials/header');
-            $this->load->view('admin/rule/rule_create', $data);
-            $this->load->view('partials/footer');
-        }
-        
-        function rule_tambah_aksi() {
-            $id_penyakit = $this->input->post('penyakit');
-            $id_gejala = $this->input->post('gejala');
-            $bobot = $this->input->post('bobot');
-        
-            $this->form_validation->set_rules('penyakit', 'Penyakit', 'required');
-            $this->form_validation->set_rules('gejala', 'Gejala', 'required');
-            $this->form_validation->set_rules('check_existing_rule', 'Pasangan gejala dan penyakit tersebut sudah ada.', 'callback_check_existing_rule');
-        
-            if ($this->form_validation->run() != false) {
-                $data = array(
-                    'id_penyakit' => $id_penyakit,
-                    'id_gejala' => $id_gejala,
-                    'bobot' => $bobot,
-                );
-        
-                $this->M_Admin->insert_data($data, 'rule');
-                $this->session->set_flashdata('success_message', 'Rule berhasil dibuat.');
-                redirect(base_url() . 'admin/rule');
-            } else {
+            if ($this->checkToken()) {
                 $data['distinct_data'] = $this->M_Admin->get_distinct_penyakit_gejala();
-        
+            
                 $this->load->view('partials/header');
                 $this->load->view('admin/rule/rule_create', $data);
                 $this->load->view('partials/footer');
+            }
+        }
+        
+        function rule_tambah_aksi() {
+            if ($this->checkToken()) {
+                $id_penyakit = $this->input->post('penyakit');
+                $id_gejala = $this->input->post('gejala');
+                $bobot = $this->input->post('bobot');
+            
+                $this->form_validation->set_rules('penyakit', 'Penyakit', 'required');
+                $this->form_validation->set_rules('gejala', 'Gejala', 'required');
+                $this->form_validation->set_rules('check_existing_rule', 'Pasangan gejala dan penyakit tersebut sudah ada.', 'callback_check_existing_rule');
+            
+                if ($this->form_validation->run() != false) {
+                    $data = array(
+                        'id_penyakit' => $id_penyakit,
+                        'id_gejala' => $id_gejala,
+                        'bobot' => $bobot,
+                    );
+            
+                    $this->M_Admin->insert_data($data, 'rule');
+                    $this->session->set_flashdata('success_message', 'Rule berhasil dibuat.');
+                    redirect(base_url() . 'admin/rule');
+                } else {
+                    $data['distinct_data'] = $this->M_Admin->get_distinct_penyakit_gejala();
+            
+                    $this->load->view('partials/header');
+                    $this->load->view('admin/rule/rule_create', $data);
+                    $this->load->view('partials/footer');
+                }
             }
         }
         
@@ -302,7 +370,8 @@
                 return $query->row();
             }
 
-            public function rule_edit($id_rule) {
+         public function rule_edit($id_rule) {
+            if ($this->checkToken()) {
                 $data['rule'] = (object)$this->get_rule_by_id($id_rule);
                 $data['distinct_data'] = $this->M_Admin->get_distinct_penyakit_gejala();
 
@@ -310,46 +379,53 @@
                 $this->load->view('admin/rule/rule_edit', $data);
                 $this->load->view('partials/footer');
             }
+        }
         
         function rule_update() {
-            $id_rule = $this->input->post('id_rule'); 
-            $id_gejala = $this->input->post('gejala');
-            $id_penyakit = $this->input->post('penyakit');
-            $bobot = $this->input->post('bobot');
-        
-            $this->form_validation->set_rules('check_existing_rule', 'Pasangan gejala dan penyakit tersebut sudah ada.', 'callback_check_existing_rule');
-        
-            if ($this->form_validation->run() != false) {
-                $where = array('id_rule' => $id_rule); 
-                $data = (object)array(
-                'id_gejala' => $id_gejala,
-                'id_penyakit' => $id_penyakit,
-                'bobot' => $bobot
-            );
-            $this->M_Admin->update_data($where, $data, 'rule');
-            $this->session->set_flashdata('success_message', 'Rule berhasil diedit.');
-            redirect(base_url() . 'admin/rule');
-            } else {
-                $data['rule'] = (object)$this->get_rule_by_id($id_rule);
-                $data['distinct_data'] = $this->M_Admin->get_distinct_penyakit_gejala();
-
-                $this->load->view('partials/header');
-                $this->load->view('admin/rule/rule_edit', $data);
-                $this->load->view('partials/footer');
+            if ($this->checkToken()) {
+                $id_rule = $this->input->post('id_rule'); 
+                $id_gejala = $this->input->post('gejala');
+                $id_penyakit = $this->input->post('penyakit');
+                $bobot = $this->input->post('bobot');
+            
+                $this->form_validation->set_rules('check_existing_rule', 'Pasangan gejala dan penyakit tersebut sudah ada.', 'callback_check_existing_rule');
+            
+                if ($this->form_validation->run() != false) {
+                    $where = array('id_rule' => $id_rule); 
+                    $data = (object)array(
+                    'id_gejala' => $id_gejala,
+                    'id_penyakit' => $id_penyakit,
+                    'bobot' => $bobot
+                );
+                $this->M_Admin->update_data($where, $data, 'rule');
+                $this->session->set_flashdata('success_message', 'Rule berhasil diedit.');
+                redirect(base_url() . 'admin/rule');
+                } else {
+                    $data['rule'] = (object)$this->get_rule_by_id($id_rule);
+                    $data['distinct_data'] = $this->M_Admin->get_distinct_penyakit_gejala();
+    
+                    $this->load->view('partials/header');
+                    $this->load->view('admin/rule/rule_edit', $data);
+                    $this->load->view('partials/footer');
+                }
             }
         }
         
         function rule_hapus($id_rule) {
-            $where = array('id_rule' => $id_rule);
-            $this->M_Admin->delete_data($where,'rule');
-            $this->session->set_flashdata('success_message', 'Rule berhasil dihapus.');
-            redirect(base_url().'admin/rule');
+            if ($this->checkToken()) {
+                $where = array('id_rule' => $id_rule);
+                $this->M_Admin->delete_data($where,'rule');
+                $this->session->set_flashdata('success_message', 'Rule berhasil dihapus.');
+                redirect(base_url().'admin/rule');
+            }
         }
 
         function diagnosa() {
-            $this->load->view('partials/header');
-            $this->load->view('admin/diagnosa/diagnosa', );
-            $this->load->view('partials/footer');
+            if ($this->checkToken()) {
+                $this->load->view('partials/header');
+                $this->load->view('admin/diagnosa/diagnosa', );
+                $this->load->view('partials/footer');
+            }
         }
         
     }
