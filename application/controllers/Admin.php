@@ -36,11 +36,14 @@
                     $data = $this->M_Auth->cek_login('tb_admin', $where)->row();
                     
                     $response = array(
-                        'id' => $data->id,
+                        'id_admin' => $data->id_admin,
                         'username' => $data->username,
                         'password' => $data->password,
                     );
                     $token = $this->jwt->encode($response);
+
+                    echo 'token: ' . $token;
+
                 } else {
                     $this->session->set_flashdata('error', 'Username atau password salah');
                     redirect(base_url() . 'admin');

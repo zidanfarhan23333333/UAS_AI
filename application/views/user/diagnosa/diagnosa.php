@@ -6,19 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="style.css" />
-
-    <head>
-      <link
-        rel="stylesheet"
-        href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
-      />
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,700;1,100;1,300;1,700&family=Ubuntu:wght@400;500;700&display=swap"
-        rel="stylesheet"
-      />
-    </head>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,700;1,100;1,300;1,700&family=Ubuntu:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
       * {
         padding: 0;
@@ -101,31 +98,37 @@
         font-size: 20px;
       }
 
-      .symptom-table {
+      .container-card {
+        margin-top: 100px;
+      }
+
+      .card-title {
+
         margin: 20px;
-        color: #ff702a;
       }
 
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
+      .card {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: #2c2a3a; 
+        padding: 20px;
+        margin: 20px;
+        border-radius: 8px;
+        transition: transform 0.3s ease-in-out;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
       }
 
-      th,
-      td {
-        border: 1px solid white;
-        padding: 10px;
-        text-align: left;
-      }
+      .symptom-radio-group {
+        display: flex;
+        gap: 20px;
+    }
 
-      th {
-        background-color: #f2f2f2;
-      }
-
-      .symptom-checkbox {
+    .symptom-radio {
+        margin-left: 10px;
         transform: scale(1.5);
-      }
+    }
+
     </style>
   </head>
   <body>
@@ -134,74 +137,71 @@
       <div class="bx bx-menu" id="menu-icon"></div>
 
       <ul class="navbar">
-        <li><a href="dashboard.html">Home</a></li>
+        <li><a href="<?php echo base_url().'user/dashboard'; ?>">Home</a></li>
         <li><a href="#">Diagnnosis</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </header>
-    <!DOCTYPE html>
-    <html lang="en">
-      <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="styles.css" />
-        <title>Tabel Gejala</title>
-      </head>
-      <body>
-        <header>
-          <a href="#" class="logo">Sistem Pakar kelompok 2</a>
-          <div class="bx bx-menu" id="menu-icon"></div>
 
-          <ul class="navbar">
-            <li><a href="dashboard.html">Home</a></li>
-            <li><a href="#">Diagnosis</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </header>
+   <section class="container-card">
+    <h2 class="card-title">Card Gejala</h2>
 
-        <section class="symptom-table">
-          <h2>TableGejala</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Gejala</th>
-                <th>Checklist</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Gejala 1</td>
-                <td><input type="checkbox" class="symptom-checkbox" /></td>
-              </tr>
-              <tr>
-                <td>Gejala 2</td>
-                <td><input type="checkbox" class="symptom-checkbox" /></td>
-              </tr>
-              <tr>
-                <td>Gejala 3</td>
-                <td><input type="checkbox" class="symptom-checkbox" /></td>
-              </tr>
-              <tr>
-                <td>Gejala 4</td>
-                <td><input type="checkbox" class="symptom-checkbox" /></td>
-              </tr>
+    <div class="card">
+      <div>
+        <p>1. Gejala 1</p>
+      </div>
+      <div class="symptom-radio-group">
+        <label for="">Sangat Yakin</label>
+        <input type="radio" name="gejala1" class="symptom-radio" />
+        <label for="">Yakin</label>
+        <input type="radio" name="gejala1" class="symptom-radio" />
+        <label for="">Cukup Yakin</label>
+        <input type="radio" name="gejala1" class="symptom-radio" />
+        <label for="">Seditik Yakin</label>
+        <input type="radio" name="gejala1" class="symptom-radio" />
+        <label for="">Tidak Yakin</label>
+        <input type="radio" name="gejala1" class="symptom-radio" />
+      </div>
+    </div>
 
-              <tr>
-                <td>Gejala 5</td>
-                <td><input type="checkbox" class="symptom-checkbox" /></td>
-              </tr>
-              <tr>
-                <td>Gejala 6</td>
-                <td><input type="checkbox" class="symptom-checkbox" /></td>
-              </tr>
-              <tr>
-                <td>Gejala 7</td>
-                <td><input type="checkbox" class="symptom-checkbox" /></td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
-      </body>
-    </html>
+    <div class="card">
+      <div>
+        <p>Gejala 2</p>
+      </div>
+      <div class="symptom-radio-group">
+        <input type="radio" name="gejala2" class="symptom-radio" />
+        <input type="radio" name="gejala2" class="symptom-radio" />
+        <input type="radio" name="gejala2" class="symptom-radio" />
+        <input type="radio" name="gejala2" class="symptom-radio" />
+        <input type="radio" name="gejala2" class="symptom-radio" />
+      </div>
+    </div>
+
+    <div class="card">
+      <div>
+        <p>Gejala 3</p>
+      </div>
+      <div class="symptom-radio-group">
+        <input type="radio" name="gejala3" class="symptom-radio" />
+        <input type="radio" name="gejala3" class="symptom-radio" /> 
+        <input type="radio" name="gejala3" class="symptom-radio" /> 
+        <input type="radio" name="gejala3" class="symptom-radio" /> 
+        <input type="radio" name="gejala3" class="symptom-radio" />
+      </div>
+    </div>
+
+    <div class="card">
+      <div>
+        <p>Gejala 4</p>
+      </div>
+      <div class="symptom-radio-group">
+        <input type="radio" name="gejala4" class="symptom-radio" />
+        <input type="radio" name="gejala4" class="symptom-radio" />
+        <input type="radio" name="gejala4" class="symptom-radio" />
+        <input type="radio" name="gejala4" class="symptom-radio" />
+        <input type="radio" name="gejala4" class="symptom-radio" />
+      </div>
+    </div>
+  </section>
   </body>
 </html>

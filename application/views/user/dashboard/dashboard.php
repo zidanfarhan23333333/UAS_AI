@@ -222,7 +222,7 @@ section {
 
       <ul class="navbar">
         <li><a href="#home">Home</a></li>
-        <li><a href="diagnosa.html">Diagnnosis</a></li>
+        <li><a href="<?php echo base_url().'user/diagnosa'; ?>">Diagnosis</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </header>
@@ -238,9 +238,9 @@ section {
       </div>
 
       <div class="home-img">
-        <img src="img/dokt.png" alt="" />
-      </div>
-    </section>
+        <img src="<?php echo base_url().'images/dokter.png'; ?>" alt="" />
+    </div>
+
 
     <section class="footer" id="footer">
       <div class="footer-container">
