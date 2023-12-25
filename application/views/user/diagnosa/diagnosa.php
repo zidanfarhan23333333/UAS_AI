@@ -144,64 +144,40 @@
     </header>
 
    <section class="container-card">
-    <h2 class="card-title">Card Gejala</h2>
+    <h2 class="card-title">Pilih Gejala dibawah ini</h2>
 
-    <div class="card">
-      <div>
-        <p>1. Gejala 1</p>
-      </div>
-      <div class="symptom-radio-group">
-        <label for="">Sangat Yakin</label>
-        <input type="radio" name="gejala1" class="symptom-radio" />
-        <label for="">Yakin</label>
-        <input type="radio" name="gejala1" class="symptom-radio" />
-        <label for="">Cukup Yakin</label>
-        <input type="radio" name="gejala1" class="symptom-radio" />
-        <label for="">Seditik Yakin</label>
-        <input type="radio" name="gejala1" class="symptom-radio" />
-        <label for="">Tidak Yakin</label>
-        <input type="radio" name="gejala1" class="symptom-radio" />
-      </div>
-    </div>
+    <form action="">
 
-    <div class="card">
-      <div>
-        <p>Gejala 2</p>
-      </div>
-      <div class="symptom-radio-group">
-        <input type="radio" name="gejala2" class="symptom-radio" />
-        <input type="radio" name="gejala2" class="symptom-radio" />
-        <input type="radio" name="gejala2" class="symptom-radio" />
-        <input type="radio" name="gejala2" class="symptom-radio" />
-        <input type="radio" name="gejala2" class="symptom-radio" />
-      </div>
-    </div>
+    <?php 
+    $no = 1;
+    foreach ($gejala as $g)
+      {
+    ?>
 
-    <div class="card">
-      <div>
-        <p>Gejala 3</p>
+      <div class="card">
+        <div>
+          <p><?php echo $no++ ; ?>. <?php echo $g->nama_gejala ; ?></p>
+        </div>
+        <div class="symptom-radio-group">
+          <label for="">Sangat Yakin</label>
+          <input type="radio" name="gejala1" class="symptom-radio" />
+          <label for="">Yakin</label>
+          <input type="radio" name="gejala1" class="symptom-radio" />
+          <label for="">Cukup Yakin</label>
+          <input type="radio" name="gejala1" class="symptom-radio" />
+          <label for="">Seditik Yakin</label>
+          <input type="radio" name="gejala1" class="symptom-radio" />
+          <label for="">Tidak Yakin</label>
+          <input type="radio" name="gejala1" class="symptom-radio" />
+        </div>
       </div>
-      <div class="symptom-radio-group">
-        <input type="radio" name="gejala3" class="symptom-radio" />
-        <input type="radio" name="gejala3" class="symptom-radio" /> 
-        <input type="radio" name="gejala3" class="symptom-radio" /> 
-        <input type="radio" name="gejala3" class="symptom-radio" /> 
-        <input type="radio" name="gejala3" class="symptom-radio" />
-      </div>
-    </div>
 
-    <div class="card">
-      <div>
-        <p>Gejala 4</p>
-      </div>
-      <div class="symptom-radio-group">
-        <input type="radio" name="gejala4" class="symptom-radio" />
-        <input type="radio" name="gejala4" class="symptom-radio" />
-        <input type="radio" name="gejala4" class="symptom-radio" />
-        <input type="radio" name="gejala4" class="symptom-radio" />
-        <input type="radio" name="gejala4" class="symptom-radio" />
-      </div>
-    </div>
+      <?php 
+      }
+    ?>
+
+    </form>
+
   </section>
   </body>
 </html>

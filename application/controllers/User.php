@@ -8,7 +8,7 @@
         {
             parent::__construct();
             $this->load->library('form_validation');
-            $this->load->model('M_Admin'); 
+            $this->load->model('M_User'); 
         }
 
         function dashboard() {
@@ -16,7 +16,8 @@
         }
 
         function diagnosa() {
-            $this->load->view('user/diagnosa/diagnosa');
+            $data['gejala'] = $this->M_Admin->get_data('gejala')->result();
+                $this->load->view('user/diagnosa/diagnosa', $data);
         }
 
     }
