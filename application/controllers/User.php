@@ -16,7 +16,12 @@
         }
 
         function diagnosa() {
-            $this->load->view('user/diagnosa/diagnosa');
+            $data['gejala'] = $this->M_Admin->get_data('gejala')->result();
+            $this->load->view('user/diagnosa/diagnosa', $data);
+        }
+
+        function diagnosa_aksi() {
+            
         }
 
     }

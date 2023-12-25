@@ -36,7 +36,7 @@
                     $data = $this->M_Auth->cek_login('tb_admin', $where)->row();
                     
                     $response = array(
-                        'id' => $data->id,
+                        // 'id' => $data->id,
                         'username' => $data->username,
                         'password' => $data->password,
                     );
