@@ -17,7 +17,19 @@
 
         function diagnosa() {
             $data['gejala'] = $this->M_Admin->get_data('gejala')->result();
-                $this->load->view('user/diagnosa/diagnosa', $data);
+            $data['nilai_p'] = $this->M_Admin->get_data('nilai_p')->result();
+
+            $this->load->view('user/diagnosa/diagnosa', $data);
         }
+
+        public function diagnosaAksi() {
+            $nilaiPValue = $this->input->post('nilai_p');
+        
+            $data = [
+                'nilai_p' => $nilaiPValue,
+            ];
+        
+            $this->load->view('user/diagnosa/diagnosa_result', $data);
+        }        
 
     }
