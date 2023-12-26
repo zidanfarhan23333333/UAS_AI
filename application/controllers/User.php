@@ -22,14 +22,121 @@
             $this->load->view('user/diagnosa/diagnosa', $data);
         }
 
-        public function diagnosaAksi() {
-            $nilaiPValue = $this->input->post('nilai_p');
+        function diagnosaAksi() {
+            $idGejala = $this->input->post('id_gejala');
         
-            $data = [
-                'nilai_p' => $nilaiPValue,
-            ];
+            $idPenyakitList = $this->getAllPenyakitFromRuleTable();
         
-            $this->load->view('user/diagnosa/diagnosa_result', $data);
-        }        
+            $maxResult = 0;
+            $namaPenyakitPersentaseTerbesar = '';
+        
+            foreach ($idPenyakitList as $idPenyakit) {
+                $ruleProbabilitas = $this->getGejalaProbabilities($idPenyakit);
+                
+                $tahap1 = 0;
+                $tahap2 = 0; 
+                $tahap3 = 0; 
+
+                $tahap4 = 1; 
+        
+                foreach ($idGejala as $idGejalaInptanUser) {
+                    foreach ($ruleProbabilitas as $probabilitasPakar) {
+                        if ($probabilitasPakar->id_gejala == $idGejalaInptanUser) {
+                            $tahap1 = (float)$probabilitasPakar->bobot;
+                            $tahap2 += $tahap1;
+
+                            $tahap3 = $tahap1 / $tahap2;
+        
+                            break;
+                        }
+                    }
+                }
+        
+                echo "Hasil untuk id_penyakit $idPenyakit:\n";
+                echo "tahap ke-1 : $tahap1\n";
+                echo "tahap ke-2 : $tahap2\n";
+                echo "tahap ke-3: $tahap3\n\n";
+            }
+        
+            $this->load->view('user/diagnosa/diagnosa_result');
+        }
+        
+        function getNamaPenyakitById($idPenyakit) {
+            $query = $this->db->query("SELECT nama_penyakit FROM penyakit WHERE id_penyakit = $idPenyakit");
+            $result = $query->row();
+        
+            return $result->nama_penyakit;
+        }
+        
+        
+        function getAllPenyakitFromRuleTable() {
+            $query = $this->db->query('SELECT DISTINCT id_penyakit FROM rule');
+            $result = $query->result();
+        
+            $idPenyakitList = array();
+            foreach ($result as $row) {
+                $idPenyakitList[] = $row->id_penyakit;
+            }
+        
+            return $idPenyakitList;
+        }
+        
+        function getGejalaProbabilities($idPenyakit) {
+            $this->db->select('id_gejala, bobot');
+            $this->db->where('id_penyakit', $idPenyakit);
+        
+            return $this->db->get('rule')->result();
+        }
+
+
+        function diagnosaAksibckp() {
+            $idGejala = $this->input->post('id_gejala');
+        
+            $idPenyakitList = $this->getAllPenyakitFromRuleTable();
+        
+            $maxResult = 0;
+            $namaPenyakitPersentaseTerbesar = '';
+        
+            foreach ($idPenyakitList as $idPenyakit) {
+                $ruleProbabilitas = $this->getGejalaProbabilities($idPenyakit);
+        
+                $tahap2 = 1; 
+                $tahap4 = 1; 
+        
+                foreach ($idGejala as $idGejalaInptanUser) {
+                    foreach ($ruleProbabilitas as $probabilitasPakar) {
+                        if ($probabilitasPakar->id_gejala == $idGejalaInptanUser) {
+                            $probPakar = (float)$probabilitasPakar->bobot;
+        
+                            $tahap2 *= $probPakar; 
+                            $tahap4 *= $probPakar; 
+        
+                            break;
+                        }
+                    }
+                }
+        
+                $tahap7 = ($tahap2 * $tahap4) * 100; 
+
+        
+                echo "Hasil untuk id_penyakit $idPenyakit:\n";
+                echo "tahap ke-2 : $tahap2\n";
+                echo "tahap ke-4 : $tahap4\n";
+                echo "tahap ke-7: $tahap7 %\n\n";
+        
+                if ($tahap7 > $maxResult) {
+                    $maxResult = $tahap7;
+                    $namaPenyakitPersentaseTerbesar = $this->getNamaPenyakitById($idPenyakit);
+                }
+            }
+        
+            echo "Hasil Diagnosa:\n";
+            echo "Penyakit: $namaPenyakitPersentaseTerbesar\n";
+            echo "Probabilitas: $maxResult %\n";
+        
+            $this->load->view('user/diagnosa/diagnosa_result');
+        }
+
+
 
     }

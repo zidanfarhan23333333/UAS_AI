@@ -151,7 +151,7 @@
       background-color: #45a049;
     }
 
-    .radio {
+    .check {
         transform: scale(2); 
     }
 
@@ -172,31 +172,28 @@
    <section class="container-card">
     <h2 class="card-title">Pilih Gejala dibawah ini</h2>
 
-<!-- your_view.php -->
+    <form method="post" action="<?= base_url('user/diagnosaAksi') ?>">
+    <?php
+        $no = 1;
+        foreach ($gejala as $g) {
+        ?>
+            <div class="card">
+                <div>
+                    <p><?php echo $no++; ?>. <?php echo $g->nama_gejala; ?></p>
+                </div>
+                <div class="symptom-radio-group">
+                    <input type="checkbox" class="check" name="id_gejala[]" value="<?= $g->id_gejala; ?>">
+                </div>
+            </div>
+        <?php
+        }
+        ?>
 
-<form method="post" action="<?= base_url('user/diagnosaAksi') ?>">
-    <?php
-    $no = 1;
-    foreach ($gejala as $g) {
-    ?>
-        <div class="card">
-            <div>
-                <p><?php echo $no++; ?>. <?php echo $g->nama_gejala; ?></p>
-            </div>
-            <div class="symptom-radio-group">
-                <?php foreach ($nilai_p as $p) : ?>
-                    <label for=""><?= $p->nama_np; ?></label>
-                    <input type="radio" name="nilai_p[<?= $g->id_gejala; ?>]" value="<?= $p->nilai_np; ?>" class="radio" />
-                <?php endforeach; ?>
-            </div>
-        </div>
-    <?php
-    }
-    ?>
-    <div class="button-container">
-        <input class="button" type="submit" class="btn btn-primary" value="Diagnosa Sekarang">
-    </div>
-</form>
+      <div class="button-container">
+          <input class="button" type="submit" class="btn btn-primary" value="Diagnosa Sekarang">
+      </div>
+  </form>
+
 
   </section>
   </body>

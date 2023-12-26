@@ -1,4 +1,4 @@
-<!-- app/Views/diagnosa_result.php -->
+<!-- app/Views/diagnosa_result.php
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,6 +18,22 @@
         <?php endforeach; ?>
     </div>
 
+    <p>Id gejala inputan user:</p>
+    <div>
+        <?php $no = 1; ?>
+        <?php foreach ($nilai_p as $value): ?>
+            <?php echo $no++; ?>. <?= $value; ?><br>
+        <?php endforeach; ?>
+    </div>
+
+    <p>Menampilkan id yang sama:</p>
+    <div>
+        <?php $no = 1; ?>
+        <?php foreach ($matched_ids as $value): ?>
+            <?php echo $no++; ?>. <?= $value; ?><br>
+        <?php endforeach; ?>
+    </div>
+
     <a href="<?= base_url('user/diagnosa'); ?>">Back to Diagnosa Form</a>
 </body>
-</html>
+</html> -->
