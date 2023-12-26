@@ -37,25 +37,43 @@
                 $tahap2 = 0; 
                 $tahap3 = 0; 
 
-                $tahap4 = 1; 
-        
+                $tahap4 = 0; 
+
+                // Tahap 1 
                 foreach ($idGejala as $idGejalaInptanUser) {
                     foreach ($ruleProbabilitas as $probabilitasPakar) {
                         if ($probabilitasPakar->id_gejala == $idGejalaInptanUser) {
                             $tahap1 = (float)$probabilitasPakar->bobot;
                             $tahap2 += $tahap1;
-
-                            $tahap3 = $tahap1 / $tahap2;
-        
                             break;
                         }
                     }
                 }
-        
+                
+                // Tahap 2 dan Tahap 3
+                foreach ($idGejala as $idGejalaInptanUser) {
+                    foreach ($ruleProbabilitas as $probabilitasPakar) {
+                        if ($probabilitasPakar->id_gejala == $idGejalaInptanUser) {
+                            $tahap1 = (float)$probabilitasPakar->bobot;
+                            $tahap3 = $tahap1 / $tahap2;
+
+                            $tahap4 += $tahap1 * $tahap3;
+
+                            // echo "Hasil untuk id_penyakit $idPenyakit:\n";
+                            // echo "tahap ke-1: $tahap1\n";
+                            // echo "tahap ke-2: $tahap2\n";
+                            // echo "tahap ke-3: $tahap3\n";
+
+                            break;
+                        }
+                    }
+                }
+                
                 echo "Hasil untuk id_penyakit $idPenyakit:\n";
-                echo "tahap ke-1 : $tahap1\n";
-                echo "tahap ke-2 : $tahap2\n";
-                echo "tahap ke-3: $tahap3\n\n";
+                // echo "tahap ke-1 : $tahap1\n";
+                // echo "tahap ke-2 : $tahap2\n";
+                // echo "tahap ke-3: $tahap3\n";
+                echo "tahap ke-4: $tahap4\n";
             }
         
             $this->load->view('user/diagnosa/diagnosa_result');
