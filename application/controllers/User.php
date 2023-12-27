@@ -27,12 +27,16 @@
         
             $idPenyakitList = $this->M_User->getAllPenyakitFromRuleTable();
         
-            $maxResult = 0;
+            // inisial value
+            $persentase = 0;
             $namaPenyakitPersentaseTerbesar = '';
+            $definisi = '';
+            $pengobatan = '';
         
             foreach ($idPenyakitList as $idPenyakit) {
                 $ruleProbabilitas = $this->M_User->getGejalaProbabilities($idPenyakit);
                 
+                // inisial value
                 $tahap1 = 0;
                 $tahap2 = 0; 
                 $tahap3 = 0; 
@@ -82,13 +86,17 @@
 
                 // Tahap 7
                 $tahap7 = $tahap6 * 100;
-
-                if ($tahap7 > $maxResult) {
-                    $maxResult = $tahap7;
-                    $namaPenyakitPersentaseTerbesar = $this->M_User->getNamaPenyakitById($idPenyakit);
+            
+                if ($tahap7 > $persentase) {
+                    $persentase = $tahap7;
+                    $namaPenyakitPersentaseTerbesar = $this->M_User->getNamaPenyakit($idPenyakit); //get nama penyakit berdasarkan persentase terbesar
+                    $definisi = $this->M_User->getDefinisi($idPenyakit); //get definisi penyakit berdasarkan persentase terbesar
+                    $pengobatan = $this->M_User->getPengobatan($idPenyakit); //get pengobatan penyakit berdasarkan persentase terbesar
                 }
-            }
-            echo "Penyakit yang dialami pasien adalah: $namaPenyakitPersentaseTerbesar , dengan tingkat keyakinan: $maxResult %";
+            }  
+            echo "Penyakit yang dialami pasien adalah: $namaPenyakitPersentaseTerbesar , dengan tingkat keyakinan: $persentase %";
+            echo "Definisi : $definisi ";
+            echo "Cara Pengobatan: $pengobatan ";
         
             $this->load->view('user/diagnosa/diagnosa_result');
         }

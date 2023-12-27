@@ -28,11 +28,25 @@
             return $idPenyakitList;
         }
 
-        function getNamaPenyakitById($idPenyakit) {
+        function getNamaPenyakit($idPenyakit) {
             $query = $this->db->query("SELECT nama_penyakit FROM penyakit WHERE id_penyakit = $idPenyakit");
             $result = $query->row();
         
             return $result->nama_penyakit;
+        }
+
+        function getDefinisi($idPenyakit) {
+            $query = $this->db->query("SELECT definisi FROM penyakit WHERE id_penyakit = $idPenyakit");
+            $result = $query->row();
+        
+            return $result->definisi;
+        }
+
+        function getPengobatan($idPenyakit) {
+            $query = $this->db->query("SELECT pengobatan FROM penyakit WHERE id_penyakit = $idPenyakit");
+            $result = $query->row();
+        
+            return $result->pengobatan;
         }
        
     }
