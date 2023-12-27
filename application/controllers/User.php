@@ -17,7 +17,6 @@
 
         function diagnosa() {
             $data['gejala'] = $this->M_Admin->get_data('gejala')->result();
-            $data['nilai_p'] = $this->M_Admin->get_data('nilai_p')->result();
 
             $this->load->view('user/diagnosa/diagnosa', $data);
         }
@@ -85,7 +84,11 @@
                 }
 
                 // Tahap 7
+
                 $tahap7 = $tahap6 * 100;
+
+                echo "Id: $idPenyakit\n";
+                echo "Persentase: $tahap7 %\n";
             
                 if ($tahap7 > $persentase) {
                     $persentase = $tahap7;
@@ -94,9 +97,10 @@
                     $pengobatan = $this->M_User->getPengobatan($idPenyakit); //get pengobatan penyakit berdasarkan persentase terbesar
                 }
             }  
-            echo "Penyakit yang dialami pasien adalah: $namaPenyakitPersentaseTerbesar , dengan tingkat keyakinan: $persentase %";
-            echo "Definisi : $definisi ";
-            echo "Cara Pengobatan: $pengobatan ";
+
+            echo "Penyakit yang dialami pasien adalah: $namaPenyakitPersentaseTerbesar , dengan tingkat keyakinan: $persentase\n %";
+            echo "Definisi : $definisi\n ";
+            echo "Cara Pengobatan: $pengobatan\n ";
         
             $this->load->view('user/diagnosa/diagnosa_result');
         }

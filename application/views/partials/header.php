@@ -45,7 +45,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="<?php echo base_url().'admin/diagnosa'; ?>" class="nav-link">
-                            Diagnosa
+                            History Diagnosa Pasien
                         </a>
                     </li>
                 </ul>

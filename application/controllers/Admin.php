@@ -228,6 +228,7 @@
                     );
             
                     $this->M_Admin->insert_data($data, 'penyakit');
+                    $this->session->set_flashdata('success_message', 'Penyakit berhasil dibuat.');
                     redirect(base_url() . 'admin/penyakit');
                 } else {
          
@@ -289,12 +290,13 @@
             if ($this->checkToken()) {
                 $where = array('id_penyakit' => $id_penyakit);
                 $this->M_Admin->delete_data($where, 'penyakit');
+                $this->session->set_flashdata('success_message', 'Penyakit berhasil dihapus.');
                 redirect(base_url().'admin/penyakit');
             }
         }
 
         private function get_all() {
-            $this->db->select('rule.id_rule, penyakit.nama_penyakit as nama_penyakit, gejala.nama_gejala as nama_gejala, rule.bobot as bobot');
+            $this->db->select('rule.id_rule ,rule.id_penyakit, rule.id_gejala, penyakit.nama_penyakit as nama_penyakit, gejala.nama_gejala as nama_gejala, rule.bobot as bobot');
             $this->db->from('rule');
             $this->db->join('gejala', 'rule.id_gejala = gejala.id_gejala');
             $this->db->join('penyakit', 'rule.id_penyakit = penyakit.id_penyakit');
@@ -306,6 +308,7 @@
         function rule() {
             if ($this->checkToken()) {
                 $data['rules'] = $this->get_all(); 
+                $data['penyakit'] = $this->get_all(); 
             
                 $this->load->view('partials/header');
                 $this->load->view('admin/rule/rule', $data);
@@ -397,13 +400,15 @@
                     'id_penyakit' => $id_penyakit,
                     'bobot' => $bobot
                 );
+                $id_penyakit = $this->get_id_penyakit_by_rule($id_rule);
+
                 $this->M_Admin->update_data($where, $data, 'rule');
                 $this->session->set_flashdata('success_message', 'Rule berhasil diedit.');
-                redirect(base_url() . 'admin/rule');
-                } else {
+                redirect(base_url() . 'admin/rule_view/' . $id_penyakit);
+            } else {
                     $data['rule'] = (object)$this->get_rule_by_id($id_rule);
                     $data['distinct_data'] = $this->M_Admin->get_distinct_penyakit_gejala();
-    
+                    
                     $this->load->view('partials/header');
                     $this->load->view('admin/rule/rule_edit', $data);
                     $this->load->view('partials/footer');
@@ -411,14 +416,51 @@
             }
         }
         
-        function rule_hapus($id_rule) {
+        
+    function rule_hapus($id_rule) {
+        if ($this->checkToken()) {
+            $id_penyakit = $this->get_id_penyakit_by_rule($id_rule);
+
+            $where = array('id_rule' => $id_rule);
+            $this->M_Admin->delete_data($where, 'rule');
+            $this->session->set_flashdata('success_message', 'Rule berhasil dihapus.');
+
+            redirect(base_url() . 'admin/rule_view/' . $id_penyakit);
+        }
+    }
+
+    function get_id_penyakit_by_rule($id_rule) {
+        $this->db->select('id_penyakit');
+        $this->db->where('id_rule', $id_rule);
+        $query = $this->db->get('rule');
+
+        if ($query->num_rows() > 0) {
+            $result = $query->row();
+            return $result->id_penyakit;
+        } else {
+            return null;
+        }
+    }
+
+        function get_penyakit_by_id($id_penyakit) {
+            $this->db->select('rule.id_rule, rule.bobot, gejala.nama_gejala, penyakit.nama_penyakit');
+            $this->db->from('rule');
+            $this->db->join('gejala', 'gejala.id_gejala = rule.id_gejala');
+            $this->db->join('penyakit', 'penyakit.id_penyakit = rule.id_penyakit');
+            $this->db->where('rule.id_penyakit', $id_penyakit);
+            $query = $this->db->get();
+            return $query->result();
+        }
+        
+        function rule_view($id_penyakit) {
             if ($this->checkToken()) {
-                $where = array('id_rule' => $id_rule);
-                $this->M_Admin->delete_data($where,'rule');
-                $this->session->set_flashdata('success_message', 'Rule berhasil dihapus.');
-                redirect(base_url().'admin/rule');
+                $data['rules'] = $this->get_penyakit_by_id($id_penyakit);
+                $this->load->view('partials/header');
+                $this->load->view('admin/rule/rule_view/rule', $data);
+                $this->load->view('partials/footer');
             }
         }
+        
 
         function diagnosa() {
             if ($this->checkToken()) {

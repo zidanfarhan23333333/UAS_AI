@@ -178,7 +178,7 @@
         foreach ($gejala as $g) {
         ?>
             <div class="card">
-                <div>
+                <div class="card-main">
                     <p><?php echo $no++; ?>. <?php echo $g->nama_gejala; ?></p>
                 </div>
                 <div class="symptom-radio-group">

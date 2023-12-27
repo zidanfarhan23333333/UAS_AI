@@ -13,6 +13,8 @@
                     <th>Tanggal Lahir</th>
                     <th>Jenis Kelamin</th>
                     <th>Penyakit</th>
+                    <th>Pengobatan</th>
+                    <th>Tanggal Diagnosa</th>
                     <th width="16%">Aksi</th>
                 </tr>
                 

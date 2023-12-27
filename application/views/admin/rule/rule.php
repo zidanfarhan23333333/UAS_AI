@@ -19,34 +19,42 @@
                 <tr>
                     <th width="1%">No</th>
                     <th>Nama Penyakit</th>
-                    <th>Nama Gejala</th>
-                    <th>Bobot</th>
-                    <th width="16%">Aksi</th>
+                    <th>Gejala</th>
+                    <th>Aksi</th>
                 </tr>
-                <!-- Use $rules instead of $rule in the foreach loop -->
-                    <?php 
-                        $no = 1;
-                        foreach ($rules as $r)
-                        {
+                <?php 
+                    $no = 1;
+                    $gejalaMap = []; 
+
+                    foreach ($rules as $r) {
+                        $gejalaMap[$r->id_penyakit][] = $r->nama_gejala;
+                    }
+
+                    foreach ($penyakit as $r) {
+                        if (isset($gejalaMap[$r->id_penyakit])) {
                             ?>
                             <tr>
-                                <td><?php echo $no++ ; ?></td>
-                                <td><?php echo $r->nama_penyakit ; ?></td>
-                                <td><?php echo $r->nama_gejala ; ?></td>    
-                                <td><?php echo $r->bobot ; ?></td>    
+                                <td><?php echo $no++; ?></td>
                                 <td>
-                                    <a href="<?php echo base_url().'admin/rule_edit/'.$r->id_rule ; ?>" class="btn btn-sm btn-warning">
-                                        <i class="fa fa-wrench "> Edit</i>
-                                    </a>
-                                    <a href="<?php echo base_url().'admin/rule_hapus/'.$r->id_rule ; ?>" id="hapusBtn" class="btn btn-sm btn-danger">
-                                        <i class="fa fa-trash"> Hapus</i>
+                                    <?php echo $r->nama_penyakit; ?>
+                                </td>
+                                <td>
+                                    <?php 
+                                        $symptomsForDisease = array_unique($gejalaMap[$r->id_penyakit]);
+                                        echo implode(", ", $symptomsForDisease);
+                                    ?>
+                                </td>    
+                                <td class="text-center">
+                                    <a href="<?php echo base_url().'admin/rule_view/'.$r->id_penyakit ; ?>" class="btn btn-sm btn-warning">
+                                        <i class="fa fa-eye"> Detail</i>
                                     </a>
                                 </td>  
                             </tr>
                             <?php
+                            unset($gejalaMap[$r->id_penyakit]);
                         }
+                    }
                     ?>
-
             </table>
         </div>
     </div>

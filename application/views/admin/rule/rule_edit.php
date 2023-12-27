@@ -4,10 +4,11 @@
             <h4>Edit Rule</h4>
         </div>
         <div class="card-body">
-            <a href="<?php echo base_url().'admin/rule'?>" class="btn btn-sm btn-outline-dark pull-right">
-                <i class="fa fa-arrow-left"></i>
-                Kembali
-            </a>
+        <a href="<?php echo base_url().'admin/rule_view/'.$rule->id_penyakit ?>" class="btn btn-sm btn-outline-dark pull-right">
+            <i class="fa fa-arrow-left"></i>
+            Kembali
+        </a>
+
             <br /> <br />
             <?php
             echo validation_errors('<div class="alert alert-danger">', '</div>'); 
