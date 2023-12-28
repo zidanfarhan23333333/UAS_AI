@@ -32,11 +32,6 @@
             color: var(--text-color);
         }
 
-        section {
-            min-height: 100vh;
-            padding: 10rem 9% 2rem;
-        }
-
         .header {
             position: fixed;
             top: 0;
@@ -75,74 +70,71 @@
             margin: 20px;
         }
 
-        .card {
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin: 20px;
+        .card-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
-
-        .card1 {
-            border: 5px solid #ccc;
+        
+        .card {
+            border: 3px solid var(--main-color);
             border-radius: 8px;
-            padding: 20px;
+            padding: 40px;
             box-shadow: 0 4px 8px rgba(255, 254, 254, 0.1);
             margin: 70px;
+
         }
 
-        .card h2, .card1 h2 {
-            color: #fff;
-            font-size: 20px;
+        .button-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
         }
 
-        .card p, .card1 p {
-            margin: 10px 0;
-            color: #fff;
-            font-size: 12px;
+        .card-title {
+            text-align: center;
+            font-weight: bold;
+            font-size: 2rem;
+        }
+
+        .data-user {
+            margin-bottom: 20px;
         }
 
         .button {
             padding: 10px 20px;
             background-color: #4caf50;
             color: white;
+            font-size: 1.5rem;
             border: none;
             border-radius: 4px;
             cursor: pointer;
         }
     </style>
-    <title>Info Card</title>
+    <title>Sistem Pakar - User</title>
 </head>
 
 <body>
-    <h2>Diagnosa Result</h2>
+<section>
+    
+        <div class="card-container">
+            <div class="card">
+                <h1 class="card-title">Hasil Diagnosa</h1>
+                <h1 class="data-user">Nama Pasien: <?php echo $nama_pasien; ?></h1>
+                <h1 class="data-user">Tanggal Diagnosa: <?php echo $tanggal_diagnosa; ?></h1>
+                <h1 class="data-user">Penyakit: <?php echo $namaPenyakitPersentaseTerbesar; ?></h1>
+                <h1 class="data-user">Tingkat keyakinan: <?php echo $persentase; ?>%</h1>
+                <h1 class="data-user">Definisi: <?php echo $definisi; ?></h1>
+                <h1 class="data-user">Cara Pengobatan: <?php echo $pengobatan; ?></h1>
+            </div>
+            <div class="button-container">
+                <a href="<?php echo base_url().'user/dashboard'?>" class="button">Selesai</a>
+                <a href="<?php echo base_url().'user/diagnosa'?>" class="button">Diagnosa Lagi</a>
+            </div>
+        </div>
 
-    <p>Nilai Probabilitas user:</p>
-    <div>
-        <?php $no = 1; ?>
-        <?php foreach ($nilai_p as $value): ?>
-            <?php echo $no++; ?>. <?= $value; ?><br>
-        <?php endforeach; ?>
-    </div>
+    </section>
 
-    <p>Id gejala inputan user:</p>
-    <div>
-        <?php $no = 1; ?>
-        <?php foreach ($nilai_p as $value): ?>
-            <?php echo $no++; ?>. <?= $value; ?><br>
-        <?php endforeach; ?>
-    </div>
-
-    <p>Menampilkan id yang sama:</p>
-    <div>
-        <?php $no = 1; ?>
-        <?php foreach ($matched_ids as $value): ?>
-            <?php echo $no++; ?>. <?= $value; ?><br>
-        <?php endforeach; ?>
-    </div>
-
-<a href="<?= base_url('user/diagnosa'); ?>">Back to Diagnosa Form</a>
-<div class="container">
-    <button class="button">Click Me</button>
-</div>
 </body>
-</html> -->
+</html> 

@@ -23,6 +23,11 @@
 
         function diagnosaAksi() {
             $idGejala = $this->input->post('id_gejala');
+            $nama_pasien = $this->input->post('nama_pasien');
+            $umur_pasien = $this->input->post('umur_pasien');
+            $tanggal_lahir = $this->input->post('tanggal_lahir');
+            $jenis_kelamin = $this->input->post('jenis_kelamin');
+            $tanggal_diagnosa = $this->input->post('tanggal_diagnosa');
         
             $idPenyakitList = $this->M_User->getAllPenyakitFromRuleTable();
         
@@ -87,8 +92,8 @@
 
                 $tahap7 = $tahap6 * 100;
 
-                echo "Id: $idPenyakit\n";
-                echo "Persentase: $tahap7 %\n";
+                // echo "Id: $idPenyakit\n";
+                // echo "Persentase: $tahap7 %\n";
             
                 if ($tahap7 > $persentase) {
                     $persentase = $tahap7;
@@ -98,11 +103,31 @@
                 }
             }  
 
-            echo "Penyakit yang dialami pasien adalah: $namaPenyakitPersentaseTerbesar , dengan tingkat keyakinan: $persentase\n %";
-            echo "Definisi : $definisi\n ";
-            echo "Cara Pengobatan: $pengobatan\n ";
+            // echo "Penyakit yang dialami pasien adalah: $namaPenyakitPersentaseTerbesar , dengan tingkat keyakinan: $persentase\n %";
+            // echo "Definisi : $definisi\n ";
+            // echo "Cara Pengobatan: $pengobatan\n ";
+            // echo "Nama: $nama_pasien\n ";
+            // echo "Umur: $umur_pasien\n ";
+            // echo "Tanggal Lahir: $tanggal_lahir\n ";
+            // echo "enis Kelamin: $jenis_kelamin\n ";
+            // echo "Tanggal Diagnosa: $tanggal_diagnosa\n ";
+
+            $data = array(
+                'nama_pasien' => $nama_pasien,
+                'umur_pasien' => $umur_pasien,
+                'tanggal_lahir' => $tanggal_lahir,
+                'jenis_kelamin' => $jenis_kelamin,
+                'tanggal_diagnosa' => $tanggal_diagnosa,
+                'namaPenyakitPersentaseTerbesar' => $namaPenyakitPersentaseTerbesar,
+                'persentase' => $persentase,
+                'definisi' => $definisi,
+                'pengobatan' => $pengobatan
+            );
+            
+            $this->load->view('user/diagnosa/diagnosa_result', $data);
         
-            $this->load->view('user/diagnosa/diagnosa_result');
         }
+
+        
         
     }

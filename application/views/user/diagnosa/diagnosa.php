@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
+  <title>Sistem Pakar - User</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -22,15 +22,13 @@
     }
 
     :root {
-      --main-color: #ff702a;
-      --text-color: #fff;
-      --bg-color: #1e1c2a;
-      --big-font: 3rem;
-      --h2-font: 1.25rem;
-      --p-font: 0.9rem;
+        --bg-color: #1f242d;
+        --second-bg-color: #323946;
+        --text-color: #fff;
+        --main-color: #0ef;
     }
     ::selection {
-      background: var(--main-color);
+      background: var(--bg-color);
       color: #fff;
     }
 
@@ -101,8 +99,7 @@
     }
 
     .new-card h2 {
-      color: var(--main-color);
-      font-size: var(--big-font);
+      font-size: 2rem;
       margin-bottom: 20px;
     }
 
@@ -215,7 +212,7 @@
     
           <div class="input-group">
             <label for="tanggal_lahir">Tanggal Lahir:</label>
-            <input type="date" id="tgl_lahir" name="tgl_lahir" required>
+            <input type="date" id="tanggal_lahir" name="tanggal_lahir" required>
           </div>
     
           <div class="input-group">
