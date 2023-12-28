@@ -114,51 +114,35 @@
 </head>
 
 <body>
-<header class="header">
-    <a href="#" class="logo">Sistem Pakar</a>
-    <i class="bx bx-menu" id="menu-icon"></i>
-    <nav class="navbar">
-        <a href="#home" class="active">Home</a>
-        <a href="diagnosa.html">Diagnosis</a>
-        <a href="#contact">Contact</a>
-    </nav>
-</header>
+    <h2>Diagnosa Result</h2>
 
-<section>
-    <div class="card1">
-        <h1>Hasil Diagnosa</h1>
-        <p></p>
-
-        <div class="card">
-            <h2>Nama_Pasien</h2>
-            <h3>Farhan</h3>
-        </div>
-
-        <div class="card">
-            <h2>Penyakit</h2>
-            <!-- Your lengthy content here -->
-        </div>
-
-        <div class="card">
-            <h2>Presentase</h2>
-            <p>120%</p>
-        </div>
-
-        <div class="card">
-            <h2>Definisi</h2>
-            <!-- Your lengthy content here -->
-        </div>
-
-        <div class="card">
-            <h2>Pengobatan</h2>
-            <!-- Your lengthy content here -->
-        </div>
+    <p>Nilai Probabilitas user:</p>
+    <div>
+        <?php $no = 1; ?>
+        <?php foreach ($nilai_p as $value): ?>
+            <?php echo $no++; ?>. <?= $value; ?><br>
+        <?php endforeach; ?>
     </div>
-</section>
+
+    <p>Id gejala inputan user:</p>
+    <div>
+        <?php $no = 1; ?>
+        <?php foreach ($nilai_p as $value): ?>
+            <?php echo $no++; ?>. <?= $value; ?><br>
+        <?php endforeach; ?>
+    </div>
+
+    <p>Menampilkan id yang sama:</p>
+    <div>
+        <?php $no = 1; ?>
+        <?php foreach ($matched_ids as $value): ?>
+            <?php echo $no++; ?>. <?= $value; ?><br>
+        <?php endforeach; ?>
+    </div>
 
 <a href="<?= base_url('user/diagnosa'); ?>">Back to Diagnosa Form</a>
 <div class="container">
     <button class="button">Click Me</button>
 </div>
 </body>
-</html>
+</html> -->

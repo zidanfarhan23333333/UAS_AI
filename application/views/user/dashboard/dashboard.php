@@ -5,264 +5,310 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,700;1,100;1,300;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="style.css" />
 
-    <head>
-      <link
-        rel="stylesheet"
-        href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
-      />
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,700;1,100;1,300;1,700&family=Ubuntu:wght@400;500;700&display=swap"
-        rel="stylesheet"
-      />
-    </head>
     <style>
-        * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-  scroll-behavior: smooth;
-  list-style: none;
-  text-decoration: none;
-}
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+        border: none;
+        outline: none;
+        scroll-behavior: smooth;
+        font-family: Poppins, sans-serif;
+      }
 
-:root {
-  --main-color: #ff702a;
-  --text-color: #fff;
-  --bg-color: #1e1c2a;
-  --big-font: 5rem;
-  --h2-font: 1.25rem;
-  --p-font: 0.9rem;
-}
-::selection {
-  background: var(--main-color);
-  color: #fff;
-}
+      :root {
+        --bg-color: #1f242d;
+        --second-bg-color: #323946;
+        --text-color: #fff;
+        --main-color: #0ef;
+      }
 
-body {
-  color: var(--text-color);
-  background: var(--bg-color);
-}
+      html {
+        font-size: 62.5%;
+        overflow-x: hidden;
+      }
 
-header {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 100%;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 30px 170px;
-  background: var(--bg-color);
-}
+      body {
+        background: var(--bg-color);
+        color: var(--text-color);
+      }
 
-.logo {
-  color: var(--main-color);
-  font-weight: 600;
-  font-size: 1.4rem;
-}
+      section {
+        min-height: 100vh;
+        padding: 10rem 9% 2rem;
+      }
 
-.navbar {
-  display: flex;
-}
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 2rem 9%;
+        background: var(--bg-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 100;
+      }
 
-.navbar a {
-  color: var(--text-color);
-  font-size: 1.1rem;
-  padding: 10px 20px;
-  font-weight: 500;
-}
+      .logo {
+        font-size: 2.5rem;
+        color: var(--text-color);
+        font-weight: 500;
+        cursor: default;
+      }
 
-.navbar a:hover {
-  color: var(--main-color);
-  cursor: pointer;
-  transition: 0.4s;
-}
+      .navbar a {
+        font-size: 1.7rem;
+        color: var(--text-color);
+        margin-left: 4rem;
+        transition: 0.3s;
+      }
 
-#menu-icon {
-  font-size: 2rem;
-  cursor: pointer;
-  display: none;
-}
+      .navbar a:hover,
+      .navbar a.active {
+        color: var(--main-color);
+      }
 
-section {
-  padding: 70px 17%;
-}
-.home {
-  width: 100%;
-  min-width: 90vh;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 1.5rem;
-  align-items: center;
-}
-.home-img img {
-  max-width: 100%;
-  width: 600px;
-  height: auto;
-}
+      #menu-icon {
+        font-size: 3.6rem;
+        color: var(--text-color);
+        display: none;
+      }
 
-.home-text h1 {
-  font-size: var(--big-font);
-  color: var(--main-color);
-}
+      .home {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-.home-text h2 {
-  font-size: var(--h2-font);
-  margin: 1rem 0.2rem;
-}
+      .home-img img {
+        width: 35vw;
+      }
 
-.btn {
-  display: inline-block;
-  padding: 10px 20px;
-  background: var(--main-color);
-  border-radius: 20px;
-  color: #fff;
-}
+      .home-content h3 {
+        font-size: 3.2rem;
+        font-weight: 700;
+      }
 
-.btn:hover {
-  transform: scale(1.2) translateY(10px);
-  transition: 0.4s;
-}
+      .home-content h3:nth-of-type(2) {
+        margin-bottom: 2rem;
+      }
 
-.about {
-  display: grid;
-  grid-template-columns: repeat(2, 2fr);
-  grid-gap: 1.5rem;
-  align-items: center;
-}
-.about-img img {
-  max-width: 100%;
-  width: 480px;
-  height: auto;
-}
+      span {
+        color: var(--main-color);
+      }
 
-.about-text span {
-  color: var(--main-color);
-}
+      .home-content h1 {
+        font-size: 3.6rem;
+        font-weight: 700;
+        line-height: 1.3;
+      }
 
-.heading {
-  text-align: center;
-}
+      .home-content p {
+        font-size: 1.6rem;
+      }
 
-.heading span {
-  color: var(--main-color);
-  font-weight: 600;
-}
+      .social-media a {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 4rem;
+        height: 4rem;
+        background: transparent;
+        border: 0.2rem solid var(--main-color);
+        border-radius: 50%;
+        font-size: 2rem;
+        color: var(--main-color);
+        margin: 3rem 1.5rem 3rem 0;
+        transition: 0.5s ease;
+      }
 
-.heading h2 {
-  font-size: var(--h2-font);
-}
+      .social-media a:hover {
+        background: var(--main-color);
+        color: var(--second-bg-color);
+        box-shadow: 0 0 1rem var(--main-color);
+      }
 
-.menu-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, auto));
-  grid-gap: 1.5rem;
-  align-items: center;
-}
+      .btn {
+        display: inline-block;
+        padding: 1rem 2.8rem;
+        background: var(--main-color);
+        border-radius: 4rem;
+        box-shadow: 0 0 1rem var(--main-color);
+        font-size: 1.6rem;
+        letter-spacing: 0.1rem;
+        font-weight: 600;
+        transition: 0.5s;
+      }
 
-.box {
-  position: relative;
-  margin-top: 4rem;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: #feeee7;
-  padding: 20px;
-  border-radius: 0.5rem;
-}
-.box-image {
-  width: 220px;
-  height: 220px;
-}
-.box-image img {
-  width: 100%;
-  height: 100%;
-}
+      .btn:hover {
+        box-shadow: none;
+      }
 
-.box h2 {
-  font-size: 1.3rem;
-  color: var(--bg-color);
-}
-.box h3 {
-  color: var(--bg-color);
-  font-size: 1rem;
-  font-weight: 400;
-  margin: 4px 0px 10px;
-}
-.box span {
-  font-size: var(--p-font);
-  color: var(--main-color);
-  font-weight: 600;
-}
+      .about {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        background: var(--second-bg-color);
+      }
 
-.box .bx {
-  background: var(--main-color);
-  position: absolute;
-  right: 0;
-  top: 0;
-  font-size: 20px;
-  padding: 7px 10px;
-  border-radius: 0 0.5rem;
-}
+      .about-img img {
+        width: 35vw;
+      }
 
+      .heading {
+        text-align: center;
+        font-size: 4.5rem;
+      }
+
+      .about-content h2 {
+        text-align: left;
+        line-height: 1.2;
+      }
+
+      .about-content h3 {
+        font-size: 2.6rem;
+      }
+
+      .about-content p {
+        font-size: 1.6rem;
+        margin: 2rem 0 3rem;
+      }
+
+      .services h2 {
+        margin-bottom: 5rem;
+      }
+
+      .services-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+      }
+
+      .services-container .services-box {
+        flex: 1 1 30rem;
+        background: var(--second-bg-color);
+        padding: 3rem 2rem 4rem;
+        border-radius: 2rem;
+        text-align: center;
+        border: 0.2rem solid var(--bg-color);
+        transition: 0.5s ease-in-out;
+      }
+
+      .services-container .services-box:hover {
+        border-color: var(--main-color);
+        transform: scale(1.02);
+      }
+
+      .services-box i {
+        font-size: 7rem;
+        color: var(--main-color);
+      }
+
+      .services-box h3 {
+        font-size: 2.6rem;
+      }
+
+      .services-box p {
+        font-size: 1.6rem;
+        margin: 0.6rem;
+      }
+
+      .portofolio {
+        background: var(--bg-color);
+      }
+
+      .portofolio h2 {
+        margin-bottom: 4rem;
+      }
+
+      .portofolio-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        align-items: center;
+        gap: 2.5rem;
+      }
+
+      .portofolio-container .portofolio-box {
+        position: relative;
+        border-radius: 2rem;
+        box-shadow: 0 0 1rem var(--bg-color);
+        overflow: hidden;
+        display: flex;
+      }
+
+      .portofolio-box img {
+        width: 100%;
+      }
     </style>
   </head>
   <body>
-    <header>
-      <a href="#" class="logo">Sistem Pakar kelompok 2</a>
-      <div class="bx bx-menu" id="menu-icon"></div>
+    <header class="header">
+      <a href="#" class="logo">Sistem Pakar</a>
 
-      <ul class="navbar">
-        <li><a href="#home">Home</a></li>
-        <li><a href="<?php echo base_url().'user/diagnosa'; ?>">Diagnosis</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+      <i class="bx bx-menu" id="menu-icon"></i>
+
+      <nav class="navbar">
+        <a href="#home" class="active">Home</a>
+       <a href="<?php echo base_url().'user/diagnosa'; ?>">Diagnosis</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </header>
 
+    <!-- section -->
+
     <section class="home" id="home">
-      <div class="home-text">
-        <h1>Sistem Pakar</h1>
-        <h2>
-          Diagnosis Penyakit pada Gigi Manusia Menggunakan Metode Naive Bayes”
-          <br />
-        </h2>
+      <div class="home-content">
+        <h3>Sistem Pakar</h3>
+        <h1>
+          "Diagnosis Penyakit pada Gigi Manusia Menggunakan Metode Naive Bayes”
+        </h1>
+
+        <p></p>
+        <div class="social-media">
+          <a href="#"><i class="bx bxl-facebook-circle"></i></a>
+          <a href="#"><i class="bx bxl-instagram"></i></a>
+          <a href="#"><i class="bx bxl-whatsapp"></i></a>
+          <a href="#"><i class="bx bxl-twitter"></i></a>
+        </div>
         <a href="#" class="btn">Cek Diagnosis</a>
       </div>
 
       <div class="home-img">
-        <img src="<?php echo base_url().'images/dokter.png'; ?>" alt="" />
-    </div>
+      <img src="<?php echo base_url().'images/dokter.png'; ?>" alt="" />
+</div>
 
+    </section>
 
-    <section class="footer" id="footer">
-      <div class="footer-container">
-        <div class="address">
-          <h2>Lokasi Tempat</h2>
-          <p>Mertoyudan Metro Kab.Magelang</p>
-          <p>Email: sistempakar.com</p>
-          <p>Phone: 0872292029928228</p>
-        </div>
-        <div class="social-media">
-          <h2>Connect with Us</h2>
-          <ul>
-            <li>
-              <a href="#" target="_blank"><i class="bx bxl-facebook"></i></a>
-            </li>
-            <li>
-              <a href="#" target="_blank"><i class="bx bxl-twitter"></i></a>
-            </li>
-            <li>
-              <a href="#" target="_blank"><i class="bx bxl-instagram"></i></a>
-            </li>
-          </ul>
+    <section class="services" id="services">
+      <h2 class="heading">Our <span>Services</span></h2>
+
+      <div class="services-container">
+        <div class="services-box">
+          <i class="bx bx-map"></i>
+
+          <h3>Lokasi Pakar</h3>
+          <p>Mertoyudan,pandasari Magelang</p>
+          <a href="#" class="btn">Contact Us</a>
         </div>
       </div>
     </section>
