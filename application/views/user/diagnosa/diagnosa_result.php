@@ -75,16 +75,19 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            gap: 20px;
         }
         
         .card {
             border: 3px solid var(--main-color);
             border-radius: 8px;
-            padding: 40px;
+            overflow: auto;
             box-shadow: 0 4px 8px rgba(255, 254, 254, 0.1);
-            margin: 70px;
-
+            width: 80%;
+            margin: 0 auto; 
+            padding: 20px; 
         }
+
 
         .button-container {
             display: flex;
@@ -100,6 +103,35 @@
 
         .data-user {
             margin-bottom: 20px;
+        }
+
+        .data-user-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .data-user-label {
+            width: 150px; 
+            margin-right: 10px;
+            color: white;
+            font-size: 1.5em; 
+
+        }
+
+        .data-user {
+            font-size: 1.5em; 
+            padding: 10px; 
+            width: 100%;
+            box-sizing: border-box;
+            border: none;
+            background-color: transparent;
+            border-bottom: 1px solid #fff;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            color: white;
+            white-space: normal; 
+            word-wrap: break-word; 
         }
 
         .button {
@@ -118,21 +150,52 @@
 <body>
 <section>
     
-        <div class="card-container">
-            <div class="card">
-                <h1 class="card-title">Hasil Diagnosa</h1>
-                <h1 class="data-user">Nama Pasien: <?php echo $nama_pasien; ?></h1>
-                <h1 class="data-user">Tanggal Diagnosa: <?php echo $tanggal_diagnosa; ?></h1>
-                <h1 class="data-user">Penyakit: <?php echo $namaPenyakitPersentaseTerbesar; ?></h1>
-                <h1 class="data-user">Tingkat keyakinan: <?php echo $persentase; ?>%</h1>
-                <h1 class="data-user">Definisi: <?php echo $definisi; ?></h1>
-                <h1 class="data-user">Cara Pengobatan: <?php echo $pengobatan; ?></h1>
+<div class="card-container">
+    <form method="post" action="<?php echo base_url().'user/tambah_aksi' ?>" class="card">
+        <h1 class="card-title">Hasil Diagnosa</h1>
+            <div class="data-user-container">
+                <label class="data-user-label">Nama :</label>
+                <input type="text" class="data-user" name="nama_pasien" value="<?php echo $nama_pasien; ?>" readonly>
             </div>
-            <div class="button-container">
-                <a href="<?php echo base_url().'user/dashboard'?>" class="button">Selesai</a>
-                <a href="<?php echo base_url().'user/diagnosa'?>" class="button">Diagnosa Lagi</a>
+            <div class="data-user-container">
+                <label class="data-user-label">Umur :</label>
+                <input type="text" class="data-user" name="umur_pasien" value="<?php echo $umur_pasien; ?>" readonly>
             </div>
+            <div class="data-user-container">
+                <label class="data-user-label">Tanggal Lahir:</label>
+                <input type="text" class="data-user" name="tanggal_lahir" value="<?php echo $tanggal_lahir; ?>" readonly>
+            </div>
+            <div class="data-user-container">
+                <label class="data-user-label">Jenis Kelamin:</label>
+                <input type="text" class="data-user" name="jenis_kelamin" value="<?php echo $jenis_kelamin; ?>" readonly>
+            </div>
+            <div class="data-user-container">
+                <label class="data-user-label">Tanggal Diagnosa:</label>
+                <input type="text" class="data-user" name="tanggal_diagnosa" value="<?php echo $tanggal_diagnosa; ?>" readonly>
+            </div>
+            <div class="data-user-container">
+                <label class="data-user-label">Penyakit:</label>
+                <input type="text" class="data-user" name="penyakit_pasien" value="<?php echo $namaPenyakitPersentaseTerbesar; ?>" readonly>
+            </div>
+            <div class="data-user-container">
+                <label class="data-user-label">Tingkat keyakinan:</label>
+                <input type="text" class="data-user" name="persentase" value="<?php echo $persentase; ?>%" readonly>
+            </div>
+            <div class="data-user-container">
+                <label class="data-user-label">Definisi:</label>
+                <input type="text" class="data-user" name="definisi" value="<?php echo $definisi; ?>" readonly>
+            </div>
+            <div class="data-user-container">
+                <label class="data-user-label">Cara Pengobatan:</label>
+                <input type="text" class="data-user" name="pengobatan" value="<?php echo $pengobatan; ?>" readonly>
+            </div>
+        <div class="button-container">
+            <a href="<?php echo base_url().'user/diagnosa'?>" class="button">Diagnosa Lagi</a>
+            <input type="submit" class="button" value="Selesai">
         </div>
+    </form>
+</div>
+
 
     </section>
 

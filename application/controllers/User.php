@@ -128,6 +128,28 @@
         
         }
 
-        
+        function tambah_aksi() {
+            $nama_pasien = $this->input->post('nama_pasien');
+            $umur_pasien = $this->input->post('umur_pasien');
+            $tanggal_lahir = $this->input->post('tanggal_lahir');
+            $jenis_kelamin = $this->input->post('jenis_kelamin');
+            $namaPenyakitPersentaseTerbesar = $this->input->post('penyakit_pasien');
+            $persentase = $this->input->post('persentase');
+            $tanggal_diagnosa = $this->input->post('tanggal_diagnosa');
+
+            $data = array(
+                'nama_pasien' => $nama_pasien,
+                'umur_pasien' => $umur_pasien,
+                'tanggal_lahir' => $tanggal_lahir,
+                'jenis_kelamin' => $jenis_kelamin,
+                'penyakit_pasien' => $namaPenyakitPersentaseTerbesar,
+                'persentase' => $persentase,
+                'tanggal_diagnosa' => $tanggal_diagnosa,
+            );
+
+            $this->M_User->insert_data($data, 'diagnosa');
+
+            redirect(base_url().'user/dashboard');
+        }
         
     }
