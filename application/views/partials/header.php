@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(). '/assets/css/awesome/css/font-awesome.css' ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
     <script type="text/javascript" src="<?php echo base_url(). '/assets/js/jquery.js' ?>"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(). '/assets/js/bootstrap.js' ?>"></script>
     <?php
         $path="http://".$_SERVER['HTTP_HOST']."/" ;

@@ -23,22 +23,56 @@
                 </select>
             </div>
 
-            <div class="form-group">
-                <label for="gejala" class="font-weight-bold">Gejala</label>
-                <select class="form-control" name="gejala" id="gejala">
-                    <option value="">-Pilih Gejala</option>
-                    <?php foreach ($distinct_data->gejala as $gejala): ?>
-                        <option value='<?php echo $gejala->id_gejala; ?>'><?php echo $gejala->nama_gejala; ?></option>
-                    <?php endforeach; ?>
-                </select>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="gejala" class="font-weight-bold">Gejala</label>
+                    <select class="form-control" name="gejala" id="gejala">
+                        <option value="">-Pilih Gejala</option>
+                        <?php foreach ($distinct_data->gejala as $gejala): ?>
+                            <option value='<?php echo $gejala->id_gejala; ?>'><?php echo $gejala->nama_gejala; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label for="bobot" class="font-weight-bold">Bobot</label>
+                    <input type="text" class="form-control" name="bobot" placeholder="Masukkan Bobot" required="required">
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label for="tambah" class="invisible">Tambah</label>
+                    <input type="button" class="btn btn-primary btn-block" value="Tambah" onclick="addFields()">
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="bobot" class="font-weight-bold">Bobot</label>
-                <input type="float" class="form-control" name="bobot" placeholder="Masukkan Bobot" required="required">
-            </div>
             <input type="submit" class="btn btn-primary" value="Simpan">
             </form>
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    function addFields() {
+        var newFields = document.createElement('div');
+        newFields.innerHTML =
+            '<div class="form-group col-md-6">' +
+            '<label for="gejala" class="font-weight-bold">Gejala</label>' +
+            '<select class="form-control" name="gejala" id="gejala">' +
+            '<option value="">-Pilih Gejala</option>' +
+            '<?php foreach ($distinct_data->gejala as $gejala): ?>' +
+            '<option value=\'<?php echo $gejala->id_gejala; ?>\'><?php echo $gejala->nama_gejala; ?></option>' +
+            '<?php endforeach; ?>' +
+            '</select>' +
+            '</div>' +
+            '<div class="form-group col-md-3">' +
+            '<label for="bobot" class="font-weight-bold">Bobot</label>' +
+            '<input type="text" class="form-control" name="bobot" placeholder="Masukkan Bobot" required="required">' +
+            '</div>' +
+            '<div class="form-group col-md-3">' +
+            '<label for="tambah" class="invisible">Tambah</label>' +
+            '<input type="button" class="btn btn-primary btn-block" value="Tambah" onclick="addFields()">' +
+            '</div>';
+
+        document.querySelector('.form-row').appendChild(newFields);
+    }
+</script>
