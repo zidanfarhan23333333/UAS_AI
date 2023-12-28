@@ -15,8 +15,32 @@
                     <th>Penyakit</th>
                     <th>Persentase</th>
                     <th>Tanggal Diagnosa</th>
-                    <th width="16%">Aksi</th>
+                    <th>Aksi</th>
                 </tr>
+
+                <?php 
+                    $no = 1;
+                    foreach ($diagnosa as $d)
+                    {
+                        ?>
+                        <tr>
+                            <td><?php echo $no++ ; ?></td>
+                            <td><?php echo $d->nama_pasien ; ?></td>
+                            <td><?php echo $d->umur_pasien ; ?></td>    
+                            <td><?php echo $d->tanggal_lahir ; ?></td>    
+                            <td><?php echo $d->jenis_kelamin ; ?></td>    
+                            <td><?php echo $d->penyakit_pasien ; ?></td>    
+                            <td><?php echo $d->persentase ; ?></td>    
+                            <td><?php echo $d->tanggal_diagnosa ; ?></td>    
+                            <td class="text-center">
+                                <a href="<?php echo base_url().'admin/diagnosa_hapus/'.$d->id_diagnosa ; ?>" class="btn btn-sm btn-danger ">
+                                    <i class="fa fa-trash"> Hapus</i>
+                                </a>
+                            </td>  
+                        </tr>
+                        <?php
+                    }
+                ?>
                 
             </table>
         </div>

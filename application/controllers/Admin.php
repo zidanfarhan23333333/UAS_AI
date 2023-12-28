@@ -464,8 +464,9 @@
 
         function diagnosa() {
             if ($this->checkToken()) {
+                $data['diagnosa'] = $this->M_Admin->get_data('diagnosa')->result();
                 $this->load->view('partials/header');
-                $this->load->view('admin/diagnosa/diagnosa', );
+                $this->load->view('admin/diagnosa/diagnosa', $data);
                 $this->load->view('partials/footer');
             }
         }
