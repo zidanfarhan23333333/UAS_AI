@@ -22,28 +22,28 @@
                     <?php endforeach; ?>
                 </select>
             </div>
-
+            
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="gejala" class="font-weight-bold">Gejala</label>
-                    <select class="form-control" name="gejala" id="gejala">
+                    <select class="form-control" name="gejala[]" id="gejala">
                         <option value="">-Pilih Gejala</option>
                         <?php foreach ($distinct_data->gejala as $gejala): ?>
                             <option value='<?php echo $gejala->id_gejala; ?>'><?php echo $gejala->nama_gejala; ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
-
                 <div class="form-group col-md-3">
                     <label for="bobot" class="font-weight-bold">Bobot</label>
-                    <input type="text" class="form-control" name="bobot" placeholder="Masukkan Bobot" required="required">
+                    <input type="text" class="form-control" name="bobot[]" placeholder="Masukkan Bobot" required="required">
                 </div>
-
                 <div class="form-group col-md-3">
                     <label for="tambah" class="invisible">Tambah</label>
-                    <input type="button" class="btn btn-primary btn-block" value="Tambah" onclick="addFields()">
+                    <input type="button" id="tambah" class="btn btn-primary btn-block" value="Tambah">
                 </div>
             </div>
+
+            <div id="gejalaSets" class="form-row"></div>
 
             <input type="submit" class="btn btn-primary" value="Simpan">
             </form>
@@ -51,28 +51,56 @@
     </div>
 </div>
 
-<script type="text/javascript">
-    function addFields() {
-        var newFields = document.createElement('div');
-        newFields.innerHTML =
-            '<div class="form-group col-md-6">' +
-            '<label for="gejala" class="font-weight-bold">Gejala</label>' +
-            '<select class="form-control" name="gejala" id="gejala">' +
-            '<option value="">-Pilih Gejala</option>' +
-            '<?php foreach ($distinct_data->gejala as $gejala): ?>' +
-            '<option value=\'<?php echo $gejala->id_gejala; ?>\'><?php echo $gejala->nama_gejala; ?></option>' +
-            '<?php endforeach; ?>' +
-            '</select>' +
-            '</div>' +
-            '<div class="form-group col-md-3">' +
-            '<label for="bobot" class="font-weight-bold">Bobot</label>' +
-            '<input type="text" class="form-control" name="bobot" placeholder="Masukkan Bobot" required="required">' +
-            '</div>' +
-            '<div class="form-group col-md-3">' +
-            '<label for="tambah" class="invisible">Tambah</label>' +
-            '<input type="button" class="btn btn-primary btn-block" value="Tambah" onclick="addFields()">' +
-            '</div>';
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var counter = 1;
 
-        document.querySelector('.form-row').appendChild(newFields);
+    function addGejalaSet() {
+        var newRow = document.createElement("div");
+        newRow.className = "form-row";
+        newRow.id = "gejalaSet" + counter;
+
+        var selectGejala = document.getElementById("gejala").cloneNode(true);
+        selectGejala.id = "gejala" + counter;
+        selectGejala.name = "gejala[]";
+
+        var inputBobot = document.createElement("input");
+        inputBobot.type = "text";
+        inputBobot.className = "form-control";
+        inputBobot.name = "bobot[]";
+        inputBobot.placeholder = "Masukkan Bobot";
+        inputBobot.required = "required";
+
+        var buttonRemove = document.createElement("button");
+        buttonRemove.type = "button";
+        buttonRemove.className = "btn btn-danger btn-block";
+        buttonRemove.textContent = "Hapus";
+        buttonRemove.onclick = function() {
+            removeGejalaSet(counter - 1);
+        };
+
+        newRow.appendChild(createFormColumn(selectGejala));
+        newRow.appendChild(createFormColumn(inputBobot));
+        newRow.appendChild(createFormColumn(buttonRemove));
+
+        document.getElementById("gejalaSets").appendChild(newRow);
+        counter++;
     }
+
+    window.removeGejalaSet = function(id) {
+        var elementToRemove = document.getElementById("gejalaSet" + id);
+        elementToRemove.parentNode.removeChild(elementToRemove);
+    };
+
+    function createFormColumn(element) {
+        var formGroup = document.createElement("div");
+        formGroup.className = "form-group col-md-3";
+        formGroup.appendChild(element);
+        return formGroup;
+    }
+
+    document.getElementById("tambah").addEventListener("click", function() {
+        addGejalaSet();
+    });
+});
 </script>

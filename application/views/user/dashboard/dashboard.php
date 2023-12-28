@@ -270,7 +270,7 @@
 
       <nav class="navbar">
         <a href="#home" class="active">Home</a>
-       <a href="<?php echo base_url().'user/diagnosa'; ?>">Diagnosis</a>
+       <a href="<?php echo base_url().'user/diagnosa'; ?>">Diagnosa</a>
         <a href="#contact">Contact</a>
       </nav>
     </header>
@@ -291,7 +291,6 @@
           <a href="#"><i class="bx bxl-whatsapp"></i></a>
           <a href="#"><i class="bx bxl-twitter"></i></a>
         </div>
-        <a href="#" class="btn">Cek Diagnosis</a>
       </div>
 
       <div class="home-img">

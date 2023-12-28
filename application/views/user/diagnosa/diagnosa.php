@@ -188,7 +188,7 @@
     <div class="bx bx-menu" id="menu-icon"></div>
     <ul class="navbar">
       <li><a href="<?php echo base_url().'user/dashboard'; ?>">Home</a></li>
-      <li><a href="#">Diagnosis</a></li>
+      <li><a href="#">Diagnosa</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </header>

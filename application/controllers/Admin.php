@@ -17,6 +17,7 @@
             $this->load->view('admin/auth/login');
         }
 
+        // LOGIN
         function login_aksi() {
             $this->form_validation->set_rules('username', 'Username', 'required');
             $this->form_validation->set_rules('password', 'Password', 'required');
@@ -60,6 +61,7 @@
             }
         }
         
+        // LOGOUT
         function logout() {
             $cookie = array(
                 'name'   => 'token',
@@ -73,6 +75,7 @@
             redirect(base_url() . 'admin');
         }
         
+        // CEK USER LOGIN SUDAH LOGIN APA BELUM
         function checkToken() {
             $token = $this->input->cookie('token');
             if (!$token) {
@@ -88,6 +91,7 @@
             }
         }
         
+        // DASHBOARD
         function dashboard() {
             if ($this->checkToken()) {
                 $this->load->view('partials/header');
@@ -96,7 +100,7 @@
             }
         }
         
-
+        // CRUD GEJALA
         function gejala() {
             if ($this->checkToken()) {
                 $data['gejala'] = $this->M_Admin->get_data('gejala')->result();
@@ -188,6 +192,7 @@
             }
         }
 
+        // CRUD PENYAKIT
         function penyakit() {
             if ($this->checkToken()) {
                 $data['penyakit'] = $this->M_Admin->get_data('penyakit')->result();
@@ -295,6 +300,7 @@
             }
         }
 
+        // CRUD RULE
         private function get_all() {
             $this->db->select('rule.id_rule ,rule.id_penyakit, rule.id_gejala, penyakit.nama_penyakit as nama_penyakit, gejala.nama_gejala as nama_gejala, rule.bobot as bobot');
             $this->db->from('rule');
@@ -329,22 +335,28 @@
         function rule_tambah_aksi() {
             if ($this->checkToken()) {
                 $id_penyakit = $this->input->post('penyakit');
-                $id_gejala = $this->input->post('gejala');
-                $bobot = $this->input->post('bobot');
+                $gejalaArray = $this->input->post('gejala'); 
+                $bobotArray = $this->input->post('bobot');
             
                 $this->form_validation->set_rules('penyakit', 'Penyakit', 'required');
-                $this->form_validation->set_rules('gejala', 'Gejala', 'required');
+                $this->form_validation->set_rules('gejala[]', 'Gejala', 'required');
                 $this->form_validation->set_rules('check_existing_rule', 'Pasangan gejala dan penyakit tersebut sudah ada.', 'callback_check_existing_rule');
             
                 if ($this->form_validation->run() != false) {
-                    $data = array(
-                        'id_penyakit' => $id_penyakit,
-                        'id_gejala' => $id_gejala,
-                        'bobot' => $bobot,
-                    );
+                    for ($i = 0; $i < count($gejalaArray); $i++) {
+                        $id_gejala = $gejalaArray[$i];
+                        $bobot = $bobotArray[$i];
             
-                    $this->M_Admin->insert_data($data, 'rule');
-                    $this->session->set_flashdata('success_message', 'Rule berhasil dibuat.');
+                        $data = array(
+                            'id_penyakit' => $id_penyakit,
+                            'id_gejala' => $id_gejala,
+                            'bobot' => $bobot,
+                        );
+            
+                        $this->M_Admin->insert_data($data, 'rule');
+                    }
+            
+                    $this->session->set_flashdata('success_message', 'Rules berhasil dibuat.');
                     redirect(base_url() . 'admin/rule');
                 } else {
                     $data['distinct_data'] = $this->M_Admin->get_distinct_penyakit_gejala();
@@ -358,13 +370,16 @@
         
         function check_existing_rule($str) {
             $id_penyakit = $this->input->post('penyakit');
-            $id_gejala = $this->input->post('gejala');
+            $id_gejala_array = $this->input->post('gejala');
         
-            if ($this->M_Admin->check_existing_rule($id_penyakit, $id_gejala)) {
-                return false;
-            } else {
-                return true;
+            foreach ($id_gejala_array as $id_gejala) {
+                if ($this->M_Admin->check_existing_rule($id_penyakit, $id_gejala)) {
+                    $this->form_validation->set_message('check_existing_rule', 'Pasangan gejala dan penyakit tersebut sudah ada.');
+                    return false;
+                }
             }
+        
+            return true;
         }
         
         public function get_rule_by_id($id_rule) {
@@ -461,7 +476,7 @@
             }
         }
         
-
+        // CRUD DIAGNOSA
         function diagnosa() {
             if ($this->checkToken()) {
                 $data['diagnosa'] = $this->M_Admin->get_data('diagnosa')->result();
