@@ -68,10 +68,9 @@
       }
 
       .logo {
-        font-size: 2.5rem;
-        color: var(--text-color);
-        font-weight: 500;
-        cursor: default;
+      color: var(--main-color);
+      font-weight: 600;
+      font-size: .1rem;
       }
 
       .navbar a {
@@ -116,7 +115,7 @@
       }
 
       .home-content h1 {
-        font-size: 3.6rem;
+        font-size: 4.6rem;
         font-weight: 700;
         line-height: 1.3;
       }
@@ -231,8 +230,22 @@
 
       .services-box p {
         font-size: 1.6rem;
-        margin: 0.6rem;
+        margin: 1rem;
       }
+
+      .row {
+    display: flex;
+     margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.row .maps {
+  flex: 1 1 100%; 
+  height: 500px; 
+  object-fit: cover;
+  box-shadow: 1px solid #333;
+}
+
 
       .portofolio {
         background: var(--bg-color);
@@ -264,7 +277,7 @@
   </head>
   <body>
     <header class="header">
-      <a href="#" class="logo">Sistem Pakar</a>
+      <a href="#" class="logo">Sistem Pakar Kelompok 2</a>
 
       <i class="bx bx-menu" id="menu-icon"></i>
 
@@ -279,7 +292,7 @@
 
     <section class="home" id="home">
       <div class="home-content">
-        <h3>Sistem Pakar</h3>
+
         <h1>
           "Diagnosis Penyakit pada Gigi Manusia Menggunakan Metode Naive Bayes”
         </h1>
@@ -308,7 +321,12 @@
           <i class="bx bx-map"></i>
 
           <h3>Lokasi Pakar</h3>
-          <p>Mertoyudan,pandasari Magelang</p>
+          <div class="row">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.4858517813054!2d110.22449557454982!3d-7.521864474224029!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a8f593d665a8f%3A0xd4e74aab2b530e83!2sKampus%202%20Universitas%20Muhammadiyah%20Magelang!5e0!3m2!1sid!2sid!4v1703756520039!5m2!1sid!2sid"  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="maps"></iframe>
+
+          </div>
+          
+          <p>Jl. Mayjen Bambang Soegeng, Glagak, Sumberrejo, Kec. Mertoyudan, Kabupaten Magelang, Jawa Tengah 56172</p>
           <a href="#" class="btn">Contact Us</a>
         </div>
       </div>
