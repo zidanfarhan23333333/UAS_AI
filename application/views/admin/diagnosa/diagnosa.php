@@ -5,6 +5,12 @@
         </div>
         <div class="card-body">
 
+            <?php if ($this->session->flashdata('success_message')): ?>
+                <div class="alert alert-success" role="alert">
+                    <?php echo $this->session->flashdata('success_message'); ?>
+                </div>
+            <?php endif; ?>
+
             <table class="table table-bordered table-striped tabel-hover">
                 <tr>
                     <th width="1%">No</th>

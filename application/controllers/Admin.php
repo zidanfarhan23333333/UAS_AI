@@ -470,6 +470,15 @@
                 $this->load->view('partials/footer');
             }
         }
+
+        function diagnosa_hapus($id_diagnosa) {
+            if ($this->checkToken()) {
+                $where = array('id_diagnosa' => $id_diagnosa);
+                $this->M_Admin->delete_data($where,'diagnosa');
+                $this->session->set_flashdata('success_message', 'Diagnosa berhasil dihapus.');
+                redirect(base_url().'admin/diagnosa');
+            }
+        }
         
     }
 ?>
