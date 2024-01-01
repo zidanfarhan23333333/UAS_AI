@@ -189,10 +189,10 @@
                 <label class="data-user-label">Cara Pengobatan:</label>
                 <input type="text" class="data-user" name="pengobatan" value="<?php echo $pengobatan; ?>" readonly>
             </div>
-        <div class="button-container">
-            <a href="<?php echo base_url().'user/diagnosa'?>" class="button">Diagnosa Lagi</a>
-            <input type="submit" class="button" value="Selesai">
-        </div>
+            <div class="button-container">
+                <a href="<?php echo base_url().'user/diagnosa'?>" class="button">Diagnosa Lagi</a>
+                <input type="submit" class="button" value="Selesai">
+            </div>
     </form>
 </div>
 

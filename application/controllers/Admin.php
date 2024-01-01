@@ -13,7 +13,7 @@
             $this->load->model('M_Admin'); 
         }
 
-        public function index(){
+        function index(){
             $this->load->view('admin/auth/login');
         }
 
@@ -152,6 +152,7 @@
                 $this->load->view('partials/footer');
             }
         }
+
         function gejala_update() {
             if ($this->checkToken()) {
                 $id_gejala = $this->input->post('id_gejala'); 
@@ -382,13 +383,13 @@
             return true;
         }
         
-        public function get_rule_by_id($id_rule) {
+        function get_rule_by_id($id_rule) {
                 $this->db->where('id_rule', $id_rule);
                 $query = $this->db->get('rule');
                 return $query->row();
             }
 
-         public function rule_edit($id_rule) {
+        function rule_edit($id_rule) {
             if ($this->checkToken()) {
                 $data['rule'] = (object)$this->get_rule_by_id($id_rule);
                 $data['distinct_data'] = $this->M_Admin->get_distinct_penyakit_gejala();

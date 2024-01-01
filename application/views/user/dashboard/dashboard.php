@@ -70,7 +70,7 @@
       .logo {
       color: var(--main-color);
       font-weight: 600;
-      font-size: .1rem;
+      font-size: 2.5rem;
       }
 
       .navbar a {
