@@ -43,7 +43,9 @@
                 </div>
             </div>
 
-            <div id="gejalaSets" class="form-row"></div>
+            <div id="gejalaSets">
+                
+            </div>
 
             <input type="submit" class="btn btn-primary" value="Simpan">
             </form>
@@ -79,11 +81,12 @@ document.addEventListener("DOMContentLoaded", function() {
             removeGejalaSet(counter - 1);
         };
 
-        newRow.appendChild(createFormColumn(selectGejala));
-        newRow.appendChild(createFormColumn(inputBobot));
-        newRow.appendChild(createFormColumn(buttonRemove));
+        newRow.appendChild(createFormColumnGejala(selectGejala));
+        newRow.appendChild(createFormColumnBobot(inputBobot));
+        newRow.appendChild(createFormColumnBobot(buttonRemove));
 
         document.getElementById("gejalaSets").appendChild(newRow);
+        
         counter++;
     }
 
@@ -92,7 +95,14 @@ document.addEventListener("DOMContentLoaded", function() {
         elementToRemove.parentNode.removeChild(elementToRemove);
     };
 
-    function createFormColumn(element) {
+    function createFormColumnGejala(element) {
+        var formGroup = document.createElement("div");
+        formGroup.className = "form-group col-md-5";
+        formGroup.appendChild(element);
+        return formGroup;
+    }
+
+    function createFormColumnBobot(element) {
         var formGroup = document.createElement("div");
         formGroup.className = "form-group col-md-3";
         formGroup.appendChild(element);

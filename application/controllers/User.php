@@ -36,6 +36,7 @@
             $namaPenyakitPersentaseTerbesar = '';
             $definisi = '';
             $pengobatan = '';
+            $Penyakit = '';
         
             foreach ($idPenyakitList as $idPenyakit) {
                 $ruleProbabilitas = $this->M_User->getGejalaProbabilities($idPenyakit);
@@ -48,7 +49,6 @@
                 $tahap5 = 0; 
                 $tahap6 = 0; 
                 $tahap7 = 0; 
-                $Penyakit = '';
 
                 // Tahap 1 
                 foreach ($idGejala as $idGejalaInptanUser) {
