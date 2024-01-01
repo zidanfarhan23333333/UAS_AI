@@ -70,7 +70,7 @@
       .logo {
       color: var(--main-color);
       font-weight: 600;
-      font-size: 2.5rem;
+      font-size: .1rem;
       }
 
       .navbar a {
@@ -284,7 +284,7 @@
       <nav class="navbar">
         <a href="#home" class="active">Home</a>
        <a href="<?php echo base_url().'user/diagnosa'; ?>">Diagnosa</a>
-        <a href="#contact">Contact</a>
+        <a href="<?php echo base_url().'user/kontak'; ?>">Contact</a>
       </nav>
     </header>
 
