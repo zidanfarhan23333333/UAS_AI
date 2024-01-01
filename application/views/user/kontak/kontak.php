@@ -84,6 +84,11 @@
         color: var(--main-color);
       }
 
+      #menu-icon {
+        font-size: 3.6rem;
+        color: var(--text-color);
+        display: none;
+      }
     </style>
 </head>
 <body>
@@ -93,9 +98,9 @@
       <i class="bx bx-menu" id="menu-icon"></i>
 
       <nav class="navbar">
-        <a href="#home" class="active">Home</a>
+        <a href="<?php echo base_url().'user/dashboard'; ?>">Home</a>
        <a href="<?php echo base_url().'user/diagnosa'; ?>">Diagnosa</a>
-        <a href="<?php echo base_url().'user/kontak'; ?>">Contact</a>
+        <a class="active" href="#">Contact</a>
       </nav>
     </header>
     

@@ -70,7 +70,7 @@
       .logo {
       color: var(--main-color);
       font-weight: 600;
-      font-size: .1rem;
+      font-size: 2.4rem;
       }
 
       .navbar a {
@@ -237,14 +237,14 @@
     display: flex;
      margin-top: 2rem;
     flex-wrap: wrap;
-}
+  }
 
-.row .maps {
-  flex: 1 1 100%; 
-  height: 500px; 
-  object-fit: cover;
-  box-shadow: 1px solid #333;
-}
+    .row .maps {
+      flex: 1 1 100%; 
+      height: 500px; 
+      object-fit: cover;
+      box-shadow: 1px solid #333;
+    }
 
 
       .portofolio {
@@ -284,7 +284,7 @@
       <nav class="navbar">
         <a href="#home" class="active">Home</a>
        <a href="<?php echo base_url().'user/diagnosa'; ?>">Diagnosa</a>
-        <a href="<?php echo base_url().'user/kontak'; ?>">Contact</a>
+        <a href="<?php echo base_url().'user/contact'; ?>">Contact</a>
       </nav>
     </header>
 

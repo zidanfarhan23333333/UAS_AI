@@ -15,6 +15,10 @@
             $this->load->view('user/dashboard/dashboard');
         }
 
+        function contact() {
+            $this->load->view('user/kontak/kontak');
+        }
+
         function diagnosa() {
             $data['gejala'] = $this->M_Admin->get_data('gejala')->result();
 

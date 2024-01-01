@@ -12,14 +12,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,700;1,100;1,300;1,700&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet" />
   <style>
     * {
-      padding: 0;
-      margin: 0;
-      box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
-      scroll-behavior: smooth;
-      list-style: none;
-      text-decoration: none;
-    }
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+        border: none;
+        outline: none;
+        scroll-behavior: smooth;
+        font-family: Poppins, sans-serif;
+      }
 
     :root {
         --bg-color: #1f242d;
@@ -27,28 +28,28 @@
         --text-color: #fff;
         --main-color: #0ef;
     }
-    ::selection {
-      background: var(--bg-color);
-      color: #fff;
-    }
 
-    body {
-      color: var(--text-color);
-      background: var(--bg-color);
-    }
+    html {
+        overflow-x: hidden;
+      }
 
-    header {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 100%;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 30px 170px;
-      background: var(--bg-color);
-    }
+      body {
+        background: var(--bg-color);
+        color: var(--text-color);
+      }
+
+     .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 2rem 9%;
+        background: var(--bg-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 100;
+      }
 
     .logo {
       color: var(--main-color);
@@ -183,15 +184,17 @@
   </style>
 </head>
 <body>
-  <header>
-    <a href="#" class="logo">Sistem Pakar kelompok 2</a>
-    <div class="bx bx-menu" id="menu-icon"></div>
-    <ul class="navbar">
-      <li><a href="<?php echo base_url().'user/dashboard'; ?>">Home</a></li>
-      <li><a href="#">Diagnosa</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </header>
+<header class="header">
+      <a href="#" class="logo">Sistem Pakar Kelompok 2</a>
+
+      <i class="bx bx-menu" id="menu-icon"></i>
+
+      <nav class="navbar">
+        <a href="<?php echo base_url().'user/dashboard'; ?>">Home</a>
+       <a href="#" class="active">Diagnosa</a>
+        <a href="<?php echo base_url().'user/contact'; ?>">Contact</a>
+      </nav>
+    </header>
 
   <section class="container-wrapper">
     <div class="new-card">
