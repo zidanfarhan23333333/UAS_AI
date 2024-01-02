@@ -12,8 +12,9 @@
             <br />
             <form method="post" action="<?php echo base_url().'admin/gejala_tambah_aksi' ?>">
                 <div class="form-group">
-                    <?php echo form_error('code_gejala', '<div class="text-danger">', '</div>'); ?>
-                    <?php echo form_error('nama_gejala', '<div class="text-danger">', '</div>'); ?>
+                    <?php
+                        echo validation_errors('<div class="alert alert-danger">', '</div>'); 
+                    ?>
                     <label for="nama" class="font-weight-bold">Code Gejala</label>
                     <input type="text" class="form-control" name="code_gejala" placeholder="Masukkan Code Gejala" required="required">
                 </div>

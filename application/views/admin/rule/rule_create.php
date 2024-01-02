@@ -47,70 +47,70 @@
                 
             </div>
 
-            <input type="submit" class="btn btn-primary" value="Simpan">
+            <input type="submit" class="btn btn-success" value="Simpan">
             </form>
         </div>
     </div>
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    var counter = 1;
+    document.addEventListener("DOMContentLoaded", function() {
+        var counter = 1;
 
-    function addGejalaSet() {
-        var newRow = document.createElement("div");
-        newRow.className = "form-row";
-        newRow.id = "gejalaSet" + counter;
+        function addGejalaSet() {
+            var newRow = document.createElement("div");
+            newRow.className = "form-row";
+            newRow.id = "gejalaSet" + counter;
 
-        var selectGejala = document.getElementById("gejala").cloneNode(true);
-        selectGejala.id = "gejala" + counter;
-        selectGejala.name = "gejala[]";
+            var selectGejala = document.getElementById("gejala").cloneNode(true);
+            selectGejala.id = "gejala" + counter;
+            selectGejala.name = "gejala[]";
 
-        var inputBobot = document.createElement("input");
-        inputBobot.type = "text";
-        inputBobot.className = "form-control";
-        inputBobot.name = "bobot[]";
-        inputBobot.placeholder = "Masukkan Bobot";
-        inputBobot.required = "required";
+            var inputBobot = document.createElement("input");
+            inputBobot.type = "text";
+            inputBobot.className = "form-control";
+            inputBobot.name = "bobot[]";
+            inputBobot.placeholder = "Masukkan Bobot";
+            inputBobot.required = "required";
 
-        var buttonRemove = document.createElement("button");
-        buttonRemove.type = "button";
-        buttonRemove.className = "btn btn-danger btn-block";
-        buttonRemove.textContent = "Hapus";
-        buttonRemove.onclick = function() {
-            removeGejalaSet(counter - 1);
+            var buttonRemove = document.createElement("button");
+            buttonRemove.type = "button";
+            buttonRemove.className = "btn btn-danger btn-block";
+            buttonRemove.textContent = "Hapus";
+            buttonRemove.onclick = function() {
+                removeGejalaSet(counter -1);
+            };
+
+            newRow.appendChild(createFormColumnGejala(selectGejala));
+            newRow.appendChild(createFormColumnBobot(inputBobot));
+            newRow.appendChild(createFormColumnBobot(buttonRemove));
+
+            document.getElementById("gejalaSets").appendChild(newRow);
+            
+            counter++;
+        }
+
+        window.removeGejalaSet = function(id) {
+            var elementToRemove = document.getElementById("gejalaSet" + id);
+            elementToRemove.parentNode.removeChild(elementToRemove);
         };
 
-        newRow.appendChild(createFormColumnGejala(selectGejala));
-        newRow.appendChild(createFormColumnBobot(inputBobot));
-        newRow.appendChild(createFormColumnBobot(buttonRemove));
+        function createFormColumnGejala(element) {
+            var formGroup = document.createElement("div");
+            formGroup.className = "form-group col-md-6";
+            formGroup.appendChild(element);
+            return formGroup;
+        }
 
-        document.getElementById("gejalaSets").appendChild(newRow);
-        
-        counter++;
-    }
+        function createFormColumnBobot(element) {
+            var formGroup = document.createElement("div");
+            formGroup.className = "form-group col-md-3";
+            formGroup.appendChild(element);
+            return formGroup;
+        }
 
-    window.removeGejalaSet = function(id) {
-        var elementToRemove = document.getElementById("gejalaSet" + id);
-        elementToRemove.parentNode.removeChild(elementToRemove);
-    };
-
-    function createFormColumnGejala(element) {
-        var formGroup = document.createElement("div");
-        formGroup.className = "form-group col-md-5";
-        formGroup.appendChild(element);
-        return formGroup;
-    }
-
-    function createFormColumnBobot(element) {
-        var formGroup = document.createElement("div");
-        formGroup.className = "form-group col-md-3";
-        formGroup.appendChild(element);
-        return formGroup;
-    }
-
-    document.getElementById("tambah").addEventListener("click", function() {
-        addGejalaSet();
+        document.getElementById("tambah").addEventListener("click", function() {
+            addGejalaSet();
+        });
     });
-});
 </script>

@@ -12,8 +12,9 @@
             <?php foreach($gejala as $g) { ?>
                 <form method="post" action="<?php echo base_url().'admin/gejala_update' ; ?>">
                     <div class="form-group">
-                    <?php echo form_error('code_gejala', '<div class="text-danger">', '</div>'); ?>
-                    <?php echo form_error('nama_gejala', '<div class="text-danger">', '</div>'); ?>
+                    <?php
+                        echo validation_errors('<div class="alert alert-danger">', '</div>'); 
+                    ?>
                     <input type="hidden" class="form-control" name="id_gejala" value="<?php echo $g->id_gejala; ?>">
                         <label for="code_gejala" class="font-weight-bold">Code Gejala</label>
                         <input type="text" class="form-control" name="code_gejala" value="<?php echo $g->code_gejala; ?>">
