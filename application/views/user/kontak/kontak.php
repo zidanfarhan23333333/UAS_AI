@@ -225,9 +225,9 @@ input {
       <i class="bx bx-menu" id="menu-icon"></i>
 
       <nav class="navbar">
-        <a href="<?php echo base_url(). 'user/dashboard'; ?>" class="active">Home</a>
+        <a href="<?php echo base_url(). 'user/dashboard'; ?>">Home</a>
         <a href="<?php echo base_url(). 'user/diagnosa'; ?>">Diagnosis</a>
-        <a href="#contact">Contact</a>
+        <a href="#contact" class="active">Contact</a>
       </nav>
     </header>
 

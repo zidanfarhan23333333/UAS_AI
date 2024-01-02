@@ -191,7 +191,7 @@
 
       <nav class="navbar">
         <a href="<?php echo base_url().'user/dashboard'; ?>">Home</a>
-       <a href="#" class="active">Diagnosa</a>
+        <a href="#" class="active">Diagnosa</a>
         <a href="<?php echo base_url().'user/contact'; ?>">Contact</a>
       </nav>
     </header>
