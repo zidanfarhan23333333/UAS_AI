@@ -248,13 +248,18 @@
           <?php
             }
           ?>
-
-
         <div class="button-container">
-          <input class="button" type="submit" class="btn btn-primary" value="Diagnosa Sekarang">
+          <input class="button" type="submit" class="btn btn-primary" onclick="btnDiagnosa()" value="Diagnosa Sekarang">
         </div>
       </form>
     </section>
   </section>
+
+<script>
+    function btnDiagnosa() {
+        alert("Berhasil Melakukan Diagnosa.");
+    }
+</script>
+
 </body>
 </html>

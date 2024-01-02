@@ -149,55 +149,58 @@
 
 <body>
 <section>
-    
-<div class="card-container">
-    <form method="post" action="<?php echo base_url().'user/tambah_aksi' ?>" class="card">
-        <h1 class="card-title">Hasil Diagnosa</h1>
-            <div class="data-user-container">
-                <label class="data-user-label">Nama :</label>
-                <input type="text" class="data-user" name="nama_pasien" value="<?php echo $nama_pasien; ?>" readonly>
-            </div>
-            <div class="data-user-container">
-                <label class="data-user-label">Umur :</label>
-                <input type="text" class="data-user" name="umur_pasien" value="<?php echo $umur_pasien; ?>" readonly>
-            </div>
-            <div class="data-user-container">
-                <label class="data-user-label">Tanggal Lahir:</label>
-                <input type="text" class="data-user" name="tanggal_lahir" value="<?php echo $tanggal_lahir; ?>" readonly>
-            </div>
-            <div class="data-user-container">
-                <label class="data-user-label">Jenis Kelamin:</label>
-                <input type="text" class="data-user" name="jenis_kelamin" value="<?php echo $jenis_kelamin; ?>" readonly>
-            </div>
-            <div class="data-user-container">
-                <label class="data-user-label">Tanggal Diagnosa:</label>
-                <input type="text" class="data-user" name="tanggal_diagnosa" value="<?php echo $tanggal_diagnosa; ?>" readonly>
-            </div>
-            <div class="data-user-container">
-                <label class="data-user-label">Penyakit:</label>
-                <input type="text" class="data-user" name="penyakit_pasien" value="<?php echo $namaPenyakitPersentaseTerbesar; ?>" readonly>
-            </div>
-            <div class="data-user-container">
-                <label class="data-user-label">Tingkat keyakinan:</label>
-                <input type="text" class="data-user" name="persentase" value="<?php echo $persentase; ?>%" readonly>
-            </div>
-            <div class="data-user-container">
-                <label class="data-user-label">Definisi:</label>
-                <input type="text" class="data-user" name="definisi" value="<?php echo $definisi; ?>" readonly>
-            </div>
-            <div class="data-user-container">
-                <label class="data-user-label">Cara Pengobatan:</label>
-                <input type="text" class="data-user" name="pengobatan" value="<?php echo $pengobatan; ?>" readonly>
-            </div>
-            <div class="button-container">
-                <a href="<?php echo base_url().'user/diagnosa'?>" class="button">Diagnosa Lagi</a>
-                <input type="submit" class="button" value="Selesai">
-            </div>
-    </form>
-</div>
+    <div class="card-container">
+        <form method="post" action="<?php echo base_url().'user/tambah_aksi' ?>" class="card">
+            <h1 class="card-title">Hasil Diagnosa</h1>
+                <div class="data-user-container">
+                    <label class="data-user-label">Nama :</label>
+                    <input type="text" class="data-user" name="nama_pasien" value="<?php echo $nama_pasien; ?>" readonly>
+                </div>
+                <div class="data-user-container">
+                    <label class="data-user-label">Umur :</label>
+                    <input type="text" class="data-user" name="umur_pasien" value="<?php echo $umur_pasien; ?>" readonly>
+                </div>
+                <div class="data-user-container">
+                    <label class="data-user-label">Tanggal Lahir:</label>
+                    <input type="text" class="data-user" name="tanggal_lahir" value="<?php echo $tanggal_lahir; ?>" readonly>
+                </div>
+                <div class="data-user-container">
+                    <label class="data-user-label">Jenis Kelamin:</label>
+                    <input type="text" class="data-user" name="jenis_kelamin" value="<?php echo $jenis_kelamin; ?>" readonly>
+                </div>
+                <div class="data-user-container">
+                    <label class="data-user-label">Tanggal Diagnosa:</label>
+                    <input type="text" class="data-user" name="tanggal_diagnosa" value="<?php echo $tanggal_diagnosa; ?>" readonly>
+                </div>
+                <div class="data-user-container">
+                    <label class="data-user-label">Penyakit:</label>
+                    <input type="text" class="data-user" name="penyakit_pasien" value="<?php echo $namaPenyakitPersentaseTerbesar; ?>" readonly>
+                </div>
+                <div class="data-user-container">
+                    <label class="data-user-label">Tingkat keyakinan:</label>
+                    <input type="text" class="data-user" name="persentase" value="<?php echo $persentase; ?>%" readonly>
+                </div>
+                <div class="data-user-container">
+                    <label class="data-user-label">Definisi:</label>
+                    <input type="text" class="data-user" name="definisi" value="<?php echo $definisi; ?>" readonly>
+                </div>
+                <div class="data-user-container">
+                    <label class="data-user-label">Cara Pengobatan:</label>
+                    <input type="text" class="data-user" name="pengobatan" value="<?php echo $pengobatan; ?>" readonly>
+                </div>
+                <div class="button-container">
+                    <a href="<?php echo base_url().'user/diagnosa'?>" class="button">Diagnosa Lagi</a>
+                    <input type="submit" class="button" value="Selesai" onclick="btnSelesai()">
+                </div>
+        </form>
+    </div>
+</section>
 
-
-    </section>
+<script>
+    function btnSelesai() {
+        alert("Terimakasih udah melakukan diagnosa pada website kami.");
+    }
+</script>
 
 </body>
 </html> 
