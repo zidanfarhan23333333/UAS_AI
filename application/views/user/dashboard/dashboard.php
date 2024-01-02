@@ -326,7 +326,7 @@
           </div>
           
           <p>Jl. Mayjen Bambang Soegeng, Glagak, Sumberrejo, Kec. Mertoyudan, Kabupaten Magelang, Jawa Tengah 56172</p>
-          <a href="#" class="btn">Contact Us</a>
+          <a href="<?php echo base_url() . 'user/contact'; ?>" class="btn">Contact Us</a>
         </div>
       </div>
     </section>
