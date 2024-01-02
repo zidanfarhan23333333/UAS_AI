@@ -31,10 +31,15 @@
             $umur_pasien = $this->input->post('umur_pasien');
             $tanggal_lahir = $this->input->post('tanggal_lahir');
             $jenis_kelamin = $this->input->post('jenis_kelamin');
-            $tanggal_diagnosa = $this->input->post('tanggal_diagnosa');
+
+            if (empty($idGejala)) {
+                echo '<script>alert("Pilih setidaknya satu gejala");</script>';
+                echo '<script>window.location.href="'.base_url().'user/diagnosa";</script>';
+                return;
+            }
         
             $idPenyakitList = $this->M_User->getAllPenyakitFromRuleTable();
-        
+
             // inisial value
             $persentase = 0;
             $namaPenyakitPersentaseTerbesar = '';
@@ -72,7 +77,6 @@
                             $tahap1 = (float)$probabilitasPakar->bobot;
                             $tahap3 = $tahap1 / $tahap2;
 
-                            // echo "Id: $idPenyakit\n";
                             // echo "tahap3: $tahap3 \n";
                             
                             $tahap4 += $tahap1 * $tahap3;
@@ -134,12 +138,14 @@
                 'umur_pasien' => $umur_pasien,
                 'tanggal_lahir' => $tanggal_lahir,
                 'jenis_kelamin' => $jenis_kelamin,
-                'tanggal_diagnosa' => $tanggal_diagnosa,
+                'tanggal_diagnosa' => date('Y-m-d'), 
                 'namaPenyakitPersentaseTerbesar' => $namaPenyakitPersentaseTerbesar,
                 'persentase' => $persentase,
                 'definisi' => $definisi,
                 'pengobatan' => $pengobatan
-            );
+            );            
+
+            echo '<script>alert("Berhasil Melakukan Diagnosa");</script>';
             
             $this->load->view('user/diagnosa/diagnosa_result', $data);
         
@@ -152,7 +158,6 @@
             $jenis_kelamin = $this->input->post('jenis_kelamin');
             $namaPenyakitPersentaseTerbesar = $this->input->post('penyakit_pasien');
             $persentase = $this->input->post('persentase');
-            $tanggal_diagnosa = $this->input->post('tanggal_diagnosa');
 
             $data = array(
                 'nama_pasien' => $nama_pasien,
@@ -161,7 +166,7 @@
                 'jenis_kelamin' => $jenis_kelamin,
                 'penyakit_pasien' => $namaPenyakitPersentaseTerbesar,
                 'persentase' => $persentase,
-                'tanggal_diagnosa' => $tanggal_diagnosa,
+                'tanggal_diagnosa' => date('Y-m-d'),
             );
 
             $this->M_User->insert_data($data, 'diagnosa');

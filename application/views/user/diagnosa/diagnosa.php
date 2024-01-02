@@ -226,11 +226,6 @@
             </select>
           </div>
     
-          <div class="input-group">
-            <label for="tanggal_diagnosa">Tanggal Diagnosa:</label>
-            <input type="date" id="tanggal_diagnosa" name="tanggal_diagnosa" required>
-          </div>
-    
           <h2 class="card-title">Pilih Gejala dibawah ini</h2>
     
           <?php
@@ -249,17 +244,10 @@
             }
           ?>
         <div class="button-container">
-          <input class="button" type="submit" class="btn btn-primary" onclick="btnDiagnosa()" value="Diagnosa Sekarang">
+          <input class="button" type="submit" class="btn btn-primary" value="Diagnosa Sekarang">
         </div>
       </form>
     </section>
   </section>
-
-<script>
-    function btnDiagnosa() {
-        alert("Berhasil Melakukan Diagnosa.");
-    }
-</script>
-
 </body>
 </html>

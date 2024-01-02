@@ -276,11 +276,12 @@
     </style>
   </head>
   <body>
+
     <header class="header">
       <a href="#" class="logo">Sistem Pakar Kelompok 2</a>
 
       <i class="bx bx-menu" id="menu-icon"></i>
-
+      
       <nav class="navbar">
         <a href="#home" class="active">Home</a>
        <a href="<?php echo base_url().'user/diagnosa'; ?>">Diagnosa</a>
@@ -292,43 +293,23 @@
 
     <section class="home" id="home">
       <div class="home-content">
+            <h1>
+              "Diagnosis Penyakit pada Gigi Manusia Menggunakan Metode Naive Bayes”
+            </h1>
 
-        <h1>
-          "Diagnosis Penyakit pada Gigi Manusia Menggunakan Metode Naive Bayes”
-        </h1>
-
-        <p></p>
-        <div class="social-media">
-          <a href="#"><i class="bx bxl-facebook-circle"></i></a>
-          <a href="#"><i class="bx bxl-instagram"></i></a>
-          <a href="#"><i class="bx bxl-whatsapp"></i></a>
-          <a href="#"><i class="bx bxl-twitter"></i></a>
-        </div>
-      </div>
-
-      <div class="home-img">
-      <img src="<?php echo base_url().'images/dokter.png'; ?>" alt="" />
-</div>
-
-    </section>
-
-    <section class="services" id="services">
-      <h2 class="heading">Our <span>Services</span></h2>
-
-      <div class="services-container">
-        <div class="services-box">
-          <i class="bx bx-map"></i>
-
-          <h3>Lokasi Pakar</h3>
-          <div class="row">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.4858517813054!2d110.22449557454982!3d-7.521864474224029!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a8f593d665a8f%3A0xd4e74aab2b530e83!2sKampus%202%20Universitas%20Muhammadiyah%20Magelang!5e0!3m2!1sid!2sid!4v1703756520039!5m2!1sid!2sid"  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="maps"></iframe>
-
+            <p></p>
+            <div class="social-media">
+              <a href="#"><i class="bx bxl-facebook-circle"></i></a>
+              <a href="#"><i class="bx bxl-instagram"></i></a>
+              <a href="#"><i class="bx bxl-whatsapp"></i></a>
+              <a href="#"><i class="bx bxl-twitter"></i></a>
+            </div>
           </div>
-          
-          <p>Jl. Mayjen Bambang Soegeng, Glagak, Sumberrejo, Kec. Mertoyudan, Kabupaten Magelang, Jawa Tengah 56172</p>
-          <a href="<?php echo base_url() . 'user/contact'; ?>" class="btn">Contact Us</a>
-        </div>
+
+          <div class="home-img">
+          <img src="<?php echo base_url().'images/dokter.png'; ?>" alt="" />
       </div>
     </section>
+
   </body>
 </html>
