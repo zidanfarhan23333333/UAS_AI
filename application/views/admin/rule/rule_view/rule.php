@@ -1,9 +1,16 @@
 <div class="container">
     <div class="card">
         <div class="card-header text-center">
-            <h4>Data Rule</h4>
+        <?php 
+            if (!empty($rules)) {
+                echo "<h4>Data Rule Penyakit " . $rules[0]->nama_penyakit . "</h4>";
+            } else {
+                echo "<h4>No rules available.</h4>";
+            }
+        ?>
+
+
         </div>
-        
         <div class="card-body">
             <?php if ($this->session->flashdata('success_message')): ?>
                     <div class="alert alert-success" role="alert">
@@ -18,7 +25,7 @@
             <table class="table table-bordered table-striped tabel-hover">
                 <tr>
                     <th width="1%">No</th>
-                    <th>Nama Penyakit</th>
+                    <!-- <th>Nama Penyakit</th> -->
                     <th>Nama Gejala</th>
                     <th>Bobot</th>
                     <th width="16%">Aksi</th>
@@ -29,7 +36,7 @@
                 ?>
                 <tr>
                     <td><?php echo $no++ ; ?></td>
-                    <td><?php echo $r->nama_penyakit ; ?></td>
+                    <!-- <td><?php echo $r->nama_penyakit ; ?></td> -->
                     <td><?php echo $r->nama_gejala ; ?></td>    
                     <td><?php echo $r->bobot ; ?></td>    
                     <td>
